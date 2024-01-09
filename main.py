@@ -3,41 +3,45 @@ import pyautogui as pg
 import pyperclip
 
 # codigo = str(input('Por favor digite o código da peça: '))
-codigo = 'sp271'
+codigo = 'kl582'
 
 #abrir o chrome
 pg.hotkey('win', 'r')
+time.sleep(0.25)
 digitar('chrome')
 pg.press('enter')
 time.sleep(1)
-pg.press('tab')
-pg.press('enter')
-time.sleep(0.25)
+pg.hotkey('win', 'up')
+abrir_site('peca.ai')
 
-#entrar no peca.ai
-digitar('peca.ai')
-time.sleep(0.25)
-pg.press('enter')
-time.sleep(4)
+#processo de pesquisa dentro do peca.ai
 clickar_imagem(r'imagens/busca_peca.ai.png')
 pg.press('tab')
 digitar(codigo)
 time.sleep(0.25)
 pg.press('enter')
 time.sleep(1.5)
-clickar_imagem(r'imagens/entrar_peca.ai.png')
+try:
+    img = pg.locateOnScreen(r'imagens/entrar_peca.ai.png')
+except pg.ImageNotFoundException:
+    pass
+else:
+    clickar_imagem(r'imagens/entrar_peca.ai.png')
 time.sleep(0.5)
 pg.press('f5')
 time.sleep(3)
-for c in range(0, 17):
-    pg.press('tab')
+pg.click(x=560, y=690)
 pg.press('enter')
 time.sleep(2)
 pg.click(x=151, y=651)
 pg.click(x=151, y=651)
 pg.hotkey('ctrl', 'c')
+unformat()
+
+#abrir o excel
 pg.hotkey('ctrl', 'shift', 'alt', 'win', 'x')
-time.sleep(4)
+# enquantonao('imagens/enquantonao_excel.png')
+time.sleep(5)
 pg.press('tab')
 pg.press('tab')
 pg.write('Planilha de Base para Cotacao')
@@ -46,6 +50,68 @@ pg.press('enter')
 time.sleep(2)
 escrever_celula('b2', codigo)
 pg.click(x=56, y=181)
+pg.click(x=56, y=181)
 pg.write('c2')
 pg.press('enter')
 pg.hotkey('ctrl', 'v')
+pg.press('enter')  
+
+#processo de pesquisa no mecanizou
+alttab()
+pg.hotkey('ctrl', 't')
+abrir_site('app.mecanizou.com')
+time.sleep(2)
+pg.press('tab')
+digitar(codigo)
+pg.press('enter')
+time.sleep(2.75)
+pg.click(x=577, y=633)
+time.sleep(0.5)
+pg.click(x=1005, y=388)
+pg.click(x=1005, y=388)
+pg.hotkey('ctrl', 'c')
+unformat()
+
+#volta pro excel (celula d2)
+alttab()
+pg.click(x=56, y=181)
+pg.write('d2')
+pg.press('enter')
+pg.hotkey('ctrl', 'v')
+pg.press('enter')  
+
+#compel
+alttab()
+pg.hotkey('ctrl', 't')
+abrir_site('https://peca.compel.com.br/')
+time.sleep(4)
+try:
+    img = pg.locateOnScreen(r'imagens/acessar_compel.png')
+except pg.ImageNotFoundException:
+    pass
+else:
+    pg.click(x=1248, y=366)
+time.sleep(4)
+pg.click(x=404, y=417)
+digitar(codigo)
+pg.press('enter')
+time.sleep(5)
+pg.click(x=321, y=630)
+pg.click(x=321, y=630)
+pg.hotkey('ctrl', 'c')
+unformat()
+
+#volta pro excel (celula e2)
+alttab()
+pg.click(x=56, y=181)
+pg.write('e2')
+pg.press('enter')
+pg.hotkey('ctrl', 'v')
+pg.press('enter')
+
+#dpk
+alttab()
+pg.hotkey('ctrl', 't')
+abrir_site('')
+
+#colar célula

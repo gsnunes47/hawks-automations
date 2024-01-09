@@ -3,10 +3,16 @@ import time
 import pyperclip
 
 def enquantonao(imagem):
-    imagem_na_tela = pg.locateOnScreen(imagem, grayscale=True)
-    while not imagem_na_tela:
-        imagem_na_tela = pg.locateOnScreen(imagem, grayscale=True)
-        time.sleep(0.1)
+    while True:
+        try:
+            img = pg.locateOnScreen(imagem)
+        except pg.ImageNotFoundException:
+            continue
+        else:
+            print('achei e brequei')
+            break
+        break
+    print()
 
 def clickar_imagem(img):
     x, y, largura, altura = pg.locateOnScreen(img, grayscale=True)
@@ -31,18 +37,28 @@ def escrever_celula(cell, txt):
     time.sleep(0.5)
     pg.write(txt)
     pg.press('enter')
+    time.sleep(0.25)
 
-def abrir_site(link):
-    try:
-        nova_guia = pg.locateOnScreen(r'imagens/nova_guia.png')
-    except pg.ImageNotFoundException:        
-        pg.hotkey('ctrl', 't')
-        pyperclip.copy(link)
-        pg.hotkey('ctrl', 'v')
-        pg.press('enter')
-    else:
-        pg.click(x=182, y=67)
-        pg.click(x=182, y=67)
-        pyperclip.copy(link)
-        pg.hotkey('ctrl', 'v')
-        pg.press('enter')
+def abrir_site(link): 
+    pg.click(x=182, y=67)
+    pg.click(x=182, y=67)
+    pyperclip.copy(link)
+    pg.hotkey('ctrl', 'v')
+    pg.press('enter')
+    time.sleep(3)
+
+def unformat():
+    pg.press('win')
+    time.sleep(0.35)
+    pg.hotkey('ctrl', 'v')
+    time.sleep(0.35)
+    pg.hotkey('ctrl', 'a')
+    time.sleep(0.35)
+    pg.hotkey('ctrl', 'c')
+    time.sleep(0.35)
+    pg.press('win')
+    pg.press('win')
+
+def alttab():
+    pg.hotkey('alt', 'tab')
+    time.sleep(0.12)
