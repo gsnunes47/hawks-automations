@@ -3,7 +3,8 @@ import pyautogui as pg
 import pyperclip
 
 # codigo = str(input('Por favor digite o código da peça: '))
-codigo = 'kl582'
+# codigo = 'kl582'
+codigo = 'sp271'
 
 #abrir o chrome
 pg.hotkey('win', 'r')
@@ -13,8 +14,9 @@ pg.press('enter')
 time.sleep(1)
 pg.hotkey('win', 'up')
 abrir_site('peca.ai')
+time.sleep(1)
 
-#processo de pesquisa dentro do peca.ai
+#pesquisa peca.ai
 clickar_imagem(r'imagens/busca_peca.ai.png')
 pg.press('tab')
 digitar(codigo)
@@ -40,7 +42,6 @@ unformat()
 
 #abrir o excel
 pg.hotkey('ctrl', 'shift', 'alt', 'win', 'x')
-# enquantonao('imagens/enquantonao_excel.png')
 time.sleep(5)
 pg.press('tab')
 pg.press('tab')
@@ -48,15 +49,19 @@ pg.write('Planilha de Base para Cotacao')
 time.sleep(1)
 pg.press('enter')
 time.sleep(2)
+
+#excel peca.ai
 escrever_celula('b2', codigo)
 pg.click(x=56, y=181)
 pg.click(x=56, y=181)
 pg.write('c2')
 pg.press('enter')
+pg.write('=')
 pg.hotkey('ctrl', 'v')
+pg.write('+15')
 pg.press('enter')  
 
-#processo de pesquisa no mecanizou
+#pesquisa mecanizou
 alttab()
 pg.hotkey('ctrl', 't')
 abrir_site('app.mecanizou.com')
@@ -72,15 +77,17 @@ pg.click(x=1005, y=388)
 pg.hotkey('ctrl', 'c')
 unformat()
 
-#volta pro excel (celula d2)
+#excel mecanizou
 alttab()
 pg.click(x=56, y=181)
 pg.write('d2')
 pg.press('enter')
+pg.write('=')
 pg.hotkey('ctrl', 'v')
+pg.write('+7')
 pg.press('enter')  
 
-#compel
+#compel pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
 abrir_site('https://peca.compel.com.br/')
@@ -95,21 +102,23 @@ time.sleep(4)
 pg.click(x=404, y=417)
 digitar(codigo)
 pg.press('enter')
-time.sleep(5)
+time.sleep(12)
 pg.click(x=321, y=630)
 pg.click(x=321, y=630)
 pg.hotkey('ctrl', 'c')
 unformat()
 
-#volta pro excel (celula e2)
+#excel compel
 alttab()
 pg.click(x=56, y=181)
 pg.write('e2')
 pg.press('enter')
+pg.write('=')
 pg.hotkey('ctrl', 'v')
+pg.write('+10')
 pg.press('enter')
 
-#dpk
+#dpk pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
 abrir_site('https://www.kdapeca.com.br/login')
@@ -124,12 +133,12 @@ pg.doubleClick(x=669, y=504)
 pg.hotkey('ctrl', 'c')
 unformat()
 
-#excel
+#excel dpk
 alttab()
 pg.click(x=56, y=181)
 pg.write('f2')
 pg.press('enter')
+pg.write('=')
 pg.hotkey('ctrl', 'v')
+pg.write('+10')
 pg.press('enter')
-
-#colar célula
