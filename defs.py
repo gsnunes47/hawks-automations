@@ -31,3 +31,18 @@ def escrever_celula(cell, txt):
     time.sleep(0.5)
     pg.write(txt)
     pg.press('enter')
+
+def abrir_site(link):
+    try:
+        nova_guia = pg.locateOnScreen(r'imagens/nova_guia.png')
+    except pg.ImageNotFoundException:        
+        pg.hotkey('ctrl', 't')
+        pyperclip.copy(link)
+        pg.hotkey('ctrl', 'v')
+        pg.press('enter')
+    else:
+        pg.click(x=182, y=67)
+        pg.click(x=182, y=67)
+        pyperclip.copy(link)
+        pg.hotkey('ctrl', 'v')
+        pg.press('enter')

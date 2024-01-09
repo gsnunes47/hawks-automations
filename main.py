@@ -13,6 +13,8 @@ time.sleep(1)
 pg.press('tab')
 pg.press('enter')
 time.sleep(0.25)
+
+#entrar no peca.ai
 digitar('peca.ai')
 time.sleep(0.25)
 pg.press('enter')

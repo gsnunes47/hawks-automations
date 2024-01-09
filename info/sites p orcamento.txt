@@ -5,4 +5,4 @@ catalogos: catalogo rede ancora, parkslink24
 peças: KDaPEÇA, mecanizou, peca.ai, peca.compel
 
 
-TOTAL HOURS: 01:13 + 30
+TOTAL minutes: 73 + 30 + 50 + 
