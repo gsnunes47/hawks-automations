@@ -2,9 +2,24 @@ from defs import *
 import pyautogui as pg
 import pyperclip
 
-# codigo = str(input('Por favor digite o código da peça: '))
-# codigo = 'kl582'
-codigo = 'sp271'
+c = 1 
+c2 = 1
+produtos = []
+while True:
+    peça = []
+    c2 = 1
+    while c2 < 4:
+        codigo = str(input(f'Digite o {c2}º código da {c}ª peça: '))
+        peça.append(codigo)
+        c2 += 1
+    produtos.append(peça)
+    c += 1
+    escolha = input('Desaja continuar? [s/n]: ')
+    if escolha == 's':
+        continue
+    else:
+        break
+codigo = str(produtos[0][0])
 
 #abrir o chrome
 pg.hotkey('win', 'r')
@@ -142,3 +157,42 @@ pg.write('=')
 pg.hotkey('ctrl', 'v')
 pg.write('+10')
 pg.press('enter')
+
+#loop a partir do segundo código
+peca_num = 2
+for peça in produtos:
+    for codigo in peça:
+        if peca_num == 1:
+            peca_num += 1
+            continue
+        alttab()
+
+        #pesquisa peca.ai
+        pg.hotkey('ctrl', '1')
+        pg.hotkey('alt', 'left')
+        pg.click(x=416, y=332)
+        pg.hotkey('ctrl', 'a')
+        digitar(codigo)
+        pg.press('enter')
+        time.sleep(3)
+        pg.click(x=560, y=690)
+        pg.press('enter')
+        time.sleep(2)
+        pg.click(x=151, y=651)
+        pg.click(x=151, y=651)
+        pg.hotkey('ctrl', 'c')
+        unformat()
+        alttab()
+
+        #excel peca ai
+        escrever_celula(cell=str('b' + str(peca_num)), txt=codigo)
+        pg.click(x=56, y=181)
+        pg.click(x=56, y=181)
+        pg.write('c' + peca_num)
+        pg.press('enter')
+        pg.write('=')
+        pg.hotkey('ctrl', 'v')
+        pg.write('+15')
+        pg.press('enter')
+        break
+    break
