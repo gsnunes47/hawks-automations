@@ -9,10 +9,10 @@ def enquantonao(imagem):
         except pg.ImageNotFoundException:
             continue
         else:
-            print('achei e brequei')
             break
         break
-    print()
+    return img
+    # print()
 
 def clickar_imagem(img):
     x, y, largura, altura = pg.locateOnScreen(img, grayscale=True)
