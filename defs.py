@@ -31,11 +31,14 @@ def digitar(txt):
     pg.hotkey('ctrl', 'v')
 
 def escrever_celula(cell, txt):
-    pg.click(x=56, y=181)
+    pg.click(x=23, y=184)
+    pg.click(x=23, y=184)
     pg.write(cell)
+    time.sleep(0.25)
     pg.press('enter')
-    time.sleep(0.5)
+    time.sleep(0.25)
     pg.write(txt)
+    time.sleep(0.25)
     pg.press('enter')
     time.sleep(0.25)
 
@@ -60,5 +63,7 @@ def unformat():
     pg.press('win')
 
 def alttab():
-    pg.hotkey('alt', 'tab')
-    time.sleep(0.12)
+    with pg.hold('alt'):
+        time.sleep(0.1)
+        pg.press('tab')
+    print()

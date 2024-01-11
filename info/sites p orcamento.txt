@@ -6,5 +6,5 @@ peças: KDaPEÇA, mecanizou, peca.ai, peca.compel
 
 
 10/jan = 138 + 23
-
+11/jan = 60
 TOTAL minutes: 554 
