@@ -66,4 +66,4 @@ def alttab():
     with pg.hold('alt'):
         time.sleep(0.1)
         pg.press('tab')
-    print()
+    time.sleep(0.5)

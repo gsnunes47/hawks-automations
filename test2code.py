@@ -20,7 +20,7 @@ import time
 #         continue
 #     else:
 #         break
-# codigo = str(produtos[0][0])
+
 produtos = [['w712/19', 'ph2966', 'wo146'], ['lx908', 'c2583', 'fap2831']]
 produtos[0].pop(0)
 
@@ -44,12 +44,16 @@ for peça in produtos:
             pg.press('tab')
         digitar(codigo)
         pg.press('enter')
-        time.sleep(1)
+        time.sleep(1.5)
         pg.press('f5')
-        time.sleep(1)
+        time.sleep(1.5)
+        pg.press('f5')
+        time.sleep(1.5)
         try:
+            print('Verificando indisponibilidade...')
             indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
         except pg.ImageNotFoundException:
+            print('Peça disponível')
             # enquantonao(r'imagens/marcas_peca.ai.png')
             pg.click(x=560, y=690)
             enquantonao(r'imagens/comprar_peca.ai.png')
@@ -58,6 +62,7 @@ for peça in produtos:
             pg.hotkey('ctrl', 'c') 
             unformat()
         else:
+            print('Peça indisponível')
             pyperclip.copy('Indisponível')
         
         #excel peca.ai
@@ -74,7 +79,5 @@ for peça in produtos:
             pg.hotkey('ctrl', 'v')
             pg.write('+15')
             pg.press('enter')
-        print(f'Código {peca_ai_celula - 1} - Peça {produtos.index(peça)} cadastrado.')
         peca_ai_celula += 1
-    print(f'Peça {produtos.index(peça)} cadastrada.')
     
