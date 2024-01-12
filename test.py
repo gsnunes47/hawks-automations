@@ -8,3 +8,5 @@ import time
 
 codigo = 'sp271'
 
+for c in range(0, 21):
+    print(c)

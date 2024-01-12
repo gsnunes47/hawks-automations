@@ -21,7 +21,7 @@ import time
 #     else:
 #         break
 
-produtos = [['w712/19', 'ph2966', 'wo146'], ['lx908', 'c2583', 'fap2831']]
+produtos = [['w712/19', 'ph28938928966', 'wo146'], ['lx908', 'c2583', 'fap2831']]
 produtos[0].pop(0)
 
 for c in range(0,2):
@@ -36,48 +36,41 @@ for c in range(0,2):
 peca_ai_celula = 3
 for peça in produtos:   
     for codigo in peça:
+
+        #compel pesquisa
         alttab()
-        pg.hotkey('ctrl', '1')
-        pg.hotkey('alt', 'left')
-        time.sleep(1)
-        for c in range(0, 8):
-            pg.press('tab')
+        pg.hotkey('ctrl', '3')
+        pg.doubleClick(x=600, y=367)
+        pg.hotkey('ctrl', 'a')
         digitar(codigo)
         pg.press('enter')
-        time.sleep(1.5)
-        pg.press('f5')
-        time.sleep(1.5)
-        pg.press('f5')
-        time.sleep(1.5)
+        time.sleep(2)
         try:
-            print('Verificando indisponibilidade...')
-            indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+            indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
         except pg.ImageNotFoundException:
-            print('Peça disponível')
-            # enquantonao(r'imagens/marcas_peca.ai.png')
-            pg.click(x=560, y=690)
-            enquantonao(r'imagens/comprar_peca.ai.png')
-            pg.click(x=109, y=650)
-            pg.click(x=109, y=650)
-            pg.hotkey('ctrl', 'c') 
-            unformat()
+            try:
+                estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+            except pg.ImageNotFoundException:
+                # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
+                pg.doubleClick(x=321, y=630)
+                pg.hotkey('ctrl', 'c')
+                unformat()
+            else:
+                pyperclip.copy('Indisponível')
         else:
-            print('Peça indisponível')
             pyperclip.copy('Indisponível')
         
-        #excel peca.ai
+        #excel compel
         alttab()
-        escrever_celula('b' + str(peca_ai_celula), codigo)
-        pg.click(x=23, y=184)
-        pg.click(x=23, y=184)
-        pg.write('c' + str(peca_ai_celula))
+        pg.click(x=56, y=181)
+        pg.write('e' + str(peca_ai_celula))
         pg.press('enter')
         if str(pyperclip.paste()) == 'Indisponível':
             pg.hotkey('ctrl', 'v')
         else:
             pg.write('=')
             pg.hotkey('ctrl', 'v')
-            pg.write('+15')
+            pg.write('+10')
             pg.press('enter')
+        
         peca_ai_celula += 1
-    
