@@ -67,3 +67,13 @@ def alttab():
         time.sleep(0.1)
         pg.press('tab')
     time.sleep(0.5)
+
+def zoom():
+    pg.hotkey('alt', 'tab')
+    with pg.hold('ctrl'):
+        time.sleep(0.5)
+        pg.scroll(100)
+        time.sleep(0.5)
+        pg.scroll(100)
+        time.sleep(0.5)
+        pg.scroll(100)
