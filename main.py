@@ -10,19 +10,22 @@ pg.FAILSAFE = True
 #     peça = []
 #     c2 = 1
 #     while c2 < 4:
-#         codigo = str(input(f'Digite o {c2}º código da {c}ª peça: '))
+#         codigo = str(input(f"Digite o {c2}º código da {c}ª peça [digite 'parar' para parar]:  "))
+#         if codigo == 'parar':
+#             break
 #         peça.append(codigo)
 #         c2 += 1
 #     produtos.append(peça)
 #     c += 1
-#     escolha = input('Desaja continuar? [s/n]: ')
+#     escolha = input('Deseja continuar? [s/n]: ')
 #     if escolha == 's':
 #         continue
 #     else:
 #         break
-# produtos = [['w712/19', 'ph28938928966', 'wo146'], ['lx908', 'c2583', 'fap2831']]
-produtos = [['dyv607', 't36083', 'vkm4790'], ['sk421', 'mb4030'], ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
+produtos = [['ph2966', 'sp271']['wo146']]
+# produtos = [['dyv607', 't36083', 'vkm4790'], ['sk421', 'mb4030'], ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 codigo = str(produtos[0][0])
+
 #abrir o chrome
 pg.hotkey('win', 'r')
 time.sleep(0.25)
@@ -40,20 +43,24 @@ digitar(codigo)
 try:
     login = pg.locateOnScreen(r'imagens/logado_peca.ai.png')
 except pg.ImageNotFoundException:
-    logado = False
     pg.press('enter')
     enquantonao(r'imagens/entrar_peca.ai.png')
     for c in range (0, 3):
         pg.press('tab')
     pg.press('enter')
 else:
-    logado = True
     pg.press('enter')
+
 time.sleep(1.5)
-pg.press('f5')
-time.sleep(1.5)
-pg.press('f5')
-time.sleep(2.5)
+while True:
+    try:
+        sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+    except pg.ImageNotFoundException:
+        break
+    else:
+        pg.press('f5')
+        time.sleep(1.5)
+
 try:
     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
 except pg.ImageNotFoundException:
@@ -107,8 +114,7 @@ except pg.ImageNotFoundException:
 else:
     pg.click(x=500, y=491)
     time.sleep(0.5)
-    pg.click(x=1005, y=388)
-    pg.click(x=1005, y=388)
+    pg.doubleClick(x=988, y=403)
     pg.hotkey('ctrl', 'c')
     unformat()
 
@@ -206,13 +212,13 @@ else:
     pg.press('enter')
 
 
-# #loop a partir do segundo código    
+#loop a partir do segundo código    
 produtos[0].pop(0)
 peca_ai_celula = 3
 for peça in produtos:   
     for codigo in peça:
         
-        #pesquisa peca.ai
+        # pesquisa peca.ai
         alttab()
         pg.hotkey('ctrl', '1')
         pg.hotkey('alt', 'left')
@@ -222,16 +228,20 @@ for peça in produtos:
         digitar(codigo)
         pg.press('enter')
         time.sleep(1.5)
-        pg.press('f5')
-        time.sleep(1.5)
-        pg.press('f5')
-        time.sleep(2.5)
+        while True:
+            try:
+                sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+            except pg.ImageNotFoundException:
+                break
+            else:
+                pg.press('f5')
+                time.sleep(1.5)
         try:
             print('Verificando indisponibilidade...')
             indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
         except pg.ImageNotFoundException:
             print('Peça disponível')
-            # enquantonao(r'imagens/marcas_peca.ai.png')
+            enquantonao(r'imagens/marcas_peca.ai.png')
             pg.click(x=560, y=690)
             enquantonao(r'imagens/comprar_peca.ai.png')
             pg.click(x=109, y=650)
@@ -242,7 +252,7 @@ for peça in produtos:
             print('Peça indisponível')
             pyperclip.copy('Indisponível')
         
-        #excel peca.ai
+        # excel peca.ai
         alttab()
         escrever_celula('b' + str(peca_ai_celula), codigo)
         pg.click(x=23, y=184)
@@ -273,8 +283,7 @@ for peça in produtos:
         else:
             pg.click(x=500, y=491)
             time.sleep(0.5)
-            pg.click(x=1005, y=388)
-            pg.click(x=1005, y=388)
+            pg.doubleClick(x=988, y=403)
             pg.hotkey('ctrl', 'c')
             unformat()
 

@@ -21,7 +21,7 @@ import time
 #     else:
 #         break
 
-produtos = [['w712/19', 'ph28938928966', 'wo146'], ['lx908', 'c2583', 'fap2831']]
+produtos = [['w712/19', 'sp271', 'wo146'], ['lx908', 'c2583', 'fap2831']]
 produtos[0].pop(0)
 
 for c in range(0,2):
