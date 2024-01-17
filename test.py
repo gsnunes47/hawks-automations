@@ -3,12 +3,12 @@ import pyautogui as pg
 import pyperclip
 import time
 
-def zoom():
-    pg.hotkey('alt', 'tab')
-    with pg.hold('ctrl'):
-        time.sleep(0.5)
-        pg.scroll(100)
-        time.sleep(0.5)
-        pg.scroll(100)
-        time.sleep(0.5)
-        pg.scroll(100)
+
+# text = 'AMORTECEDOR DE SUSPENSÃO TRASEIRO DIREITO / ESQUERDO MONROE - SP271'
+# test = text.split('/')[0]
+alttab()
+pg.doubleClick(x=306, y=316)
+pg.click(x=306, y=316)
+pg.hotkey('ctrl', 'c')
+text = pyperclip.paste().split('/')[0]
+print(text)

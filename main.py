@@ -3,36 +3,36 @@ import pyautogui as pg
 import pyperclip
 
 pg.FAILSAFE = True
-# c = 1 
-# c2 = 1
-# produtos = []
-# while True:
-#     peça = []
-#     c2 = 1
-#     while c2 < 4:
-#         codigo = str(input(f"Digite o {c2}º código da {c}ª peça [digite 'parar' para parar]:  "))
-#         if codigo == 'parar':
-#             break
-#         peça.append(codigo)
-#         c2 += 1
-#     produtos.append(peça)
-#     c += 1
-#     escolha = input('Deseja continuar? [s/n]: ')
-#     if escolha == 's':
-#         continue
-#     else:
-#         break
-# produtos = [['ph2966', 'sp271'], ['wo146']]
-produtos = [['dyv607', 't36083', 'vkm4790'], ['sk421', 'mb4030'], ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
+c = 1 
+c2 = 1
+produtos = []
+while True:
+    peça = []
+    c2 = 1
+    while c2 < 4:
+        codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
+        if codigo == None:
+            break
+        peça.append(codigo)
+        c2 += 1
+    produtos.append(peça)
+    c += 1
+    escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
+    if escolha == 'Sim':
+        continue
+    else:
+        break
+# produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
+# produtos = [['dyv607', 't36083', 'vkm4790'], ['sk421', 'mb4030'], ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
-pg.hotkey('win', 'r')
+pg.hotkey('win', 'r')      
 time.sleep(0.25)
 digitar('chrome')
 pg.press('enter') #arrumar o tab, por que as vezes a leticia despadroniza o chrome
 time.sleep(1) # enquantonao(r'imagens/nova_guia.png')
-pg.hotkey('win', 'up')
+pg.hotkey('win', 'up')  
 abrir_site('peca.ai')
 
 #pesquisa peca.ai
@@ -97,6 +97,15 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+15')
     pg.press('enter')
+
+#pegar nome da peça
+alttab()
+pg.doubleClick(x=306, y=316)
+pg.click(x=306, y=316)
+pg.hotkey('ctrl', 'c')
+text = pyperclip.paste().split('/')[0]
+alttab()
+escrever_celula('a2', text)
 
 #pesquisa mecanizou
 alttab()
@@ -527,154 +536,310 @@ for peça in produtos:
                 celula_excel += 1
     else:
         for codigo in peça:
-
-            alttab()
-            pg.hotkey('ctrl', '1')
-            pg.hotkey('alt', 'left')
-            time.sleep(1)
-            for c in range(0, 8):
-                pg.press('tab')
-            digitar(codigo)
-            pg.press('enter')
-            time.sleep(1.5)
-            while True:
-                try:
-                    sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
-                except pg.ImageNotFoundException:
-                    break
-                else:
-                    pg.press('f5')
-                    time.sleep(1.5)
-            try:
-                print('Verificando indisponibilidade...')
-                indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
-            except pg.ImageNotFoundException:
-                print('Peça disponível')
-                enquantonao(r'imagens/marcas_peca.ai.png')
-                pg.click(x=560, y=690)
-                enquantonao(r'imagens/comprar_peca.ai.png')
-                pg.click(x=109, y=650)
-                pg.click(x=109, y=650)
-                pg.hotkey('ctrl', 'c') 
-                unformat()
-            else:
-                print('Peça indisponível')
-                pyperclip.copy('Indisponível')
-            
-            # excel peca.ai
-            alttab()
-            escrever_celula('b' + str(celula_excel), codigo)
-            pg.click(x=23, y=184)
-            pg.click(x=23, y=184)
-            pg.write('c' + str(celula_excel))
-            pg.press('enter')
-            if str(pyperclip.paste()) == 'Indisponível':
-                pg.hotkey('ctrl', 'v')
-            else:
-                pg.write('=')
-                pg.hotkey('ctrl', 'v')
-                pg.write('+15')
+            if codigo == peça[0]:
+                alttab()
+                pg.hotkey('ctrl', '1')
+                pg.hotkey('alt', 'left')
+                time.sleep(1)
+                for c in range(0, 8):
+                    pg.press('tab')
+                digitar(codigo)
                 pg.press('enter')
-
-            #pesquisa mecanizou
-            alttab()
-            pg.hotkey('ctrl', '2')
-            pg.hotkey('alt', 'left')
-            time.sleep(3)
-            pg.press('tab')
-            digitar(codigo)         
-            pg.press('enter')
-            time.sleep(3)
-            try:
-                disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
-            except pg.ImageNotFoundException:
-                pyperclip.copy('Indisponível')
-            else:
-                pg.click(x=500, y=491)
-                time.sleep(0.5)
-                pg.doubleClick(x=988, y=403)
-                pg.hotkey('ctrl', 'c')
-                unformat()
-
-            #excel mecanizou
-            alttab()
-            pg.click(x=56, y=181)
-            pg.write('d' + str(celula_excel))
-            pg.press('enter')
-            if str(pyperclip.paste()) == 'Indisponível':
-                pg.hotkey('ctrl', 'v')
-            else:
-                pg.write('=')
-                pg.hotkey('ctrl', 'v')
-                pg.write('+7')
-                pg.press('enter')
-
-            #compel pesquisa
-            alttab()
-            pg.hotkey('ctrl', '3')
-            pg.doubleClick(x=600, y=367)
-            pg.hotkey('ctrl', 'a')
-            digitar(codigo)
-            pg.press('enter')
-            time.sleep(2)
-            try:
-                indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
-            except pg.ImageNotFoundException:
+                time.sleep(1.5)
+                while True:
+                    try:
+                        sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+                    except pg.ImageNotFoundException:
+                        break
+                    else:
+                        pg.press('f5')
+                        time.sleep(1.5)
                 try:
-                    estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                    print('Verificando indisponibilidade...')
+                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
-                    pg.doubleClick(x=321, y=630)
-                    pg.hotkey('ctrl', 'c')
+                    print('Peça disponível')
+                    enquantonao(r'imagens/marcas_peca.ai.png')
+                    pg.click(x=560, y=690)
+                    enquantonao(r'imagens/comprar_peca.ai.png')
+                    pg.click(x=109, y=650)
+                    pg.click(x=109, y=650)
+                    pg.hotkey('ctrl', 'c') 
                     unformat()
                 else:
+                    print('Peça indisponível')
                     pyperclip.copy('Indisponível')
-            else:
-                pyperclip.copy('Indisponível')
-            
-            #excel compel
-            alttab()
-            pg.click(x=56, y=181)
-            pg.write('e' + str(celula_excel))
-            pg.press('enter')
-            if str(pyperclip.paste()) == 'Indisponível':
-                pg.hotkey('ctrl', 'v')
-            else:
-                pg.write('=')
-                pg.hotkey('ctrl', 'v')
-                pg.write('+10')
+                
+                # excel peca.ai
+                alttab()
+                escrever_celula('b' + str(celula_excel), codigo)
+                pg.click(x=23, y=184)
+                pg.click(x=23, y=184)
+                pg.write('c' + str(celula_excel))
                 pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+15')
+                    pg.press('enter')
 
-            #pesquisa dpk
-            alttab()
-            pg.hotkey('ctrl', '4')
-            pg.doubleClick(x=642, y=251)
-            pg.hotkey('ctrl', 'a')
-            
-            digitar(codigo)
-            pg.press('enter')
-            time.sleep(2)
-            try:
-                quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
-            except pg.ImageNotFoundException:
-                pyperclip.copy('Indisponível')
-            else:
-                pg.doubleClick(x=669, y=504)
+                #pegar nome da peça
+                alttab()
+                pg.doubleClick(x=306, y=316)
+                pg.click(x=306, y=316)
                 pg.hotkey('ctrl', 'c')
-                unformat()  
+                text = pyperclip.paste().split('/')[0]
+                alttab()
+                escrever_celula('a' + str(celula_excel), text)
 
-            #excel dpk
-            alttab()
-            pg.click(x=56, y=181)
-            pg.write('f' + str(celula_excel))
-            pg.press('enter')
-            if str(pyperclip.paste()) == 'Indisponível':
-                pg.hotkey('ctrl', 'v')
-            else:
-                pg.write('=')
-                pg.hotkey('ctrl', 'v')
-                pg.write('+10')
+                #pesquisa mecanizou
+                alttab()
+                pg.hotkey('ctrl', '2')
+                pg.hotkey('alt', 'left')
+                time.sleep(3)
+                pg.press('tab')
+                digitar(codigo)         
                 pg.press('enter')
-            
+                time.sleep(3)
+                try:
+                    disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+                except pg.ImageNotFoundException:
+                    pyperclip.copy('Indisponível')
+                else:
+                    pg.click(x=500, y=491)
+                    time.sleep(0.5)
+                    pg.doubleClick(x=988, y=403)
+                    pg.hotkey('ctrl', 'c')
+                    unformat()
+
+                #excel mecanizou
+                alttab()
+                pg.click(x=56, y=181)
+                pg.write('d' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+7')
+                    pg.press('enter')
+
+                #compel pesquisa
+                alttab()
+                pg.hotkey('ctrl', '3')
+                pg.doubleClick(x=600, y=367)
+                pg.hotkey('ctrl', 'a')
+                digitar(codigo)
+                pg.press('enter')
+                time.sleep(2)
+                try:
+                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+                except pg.ImageNotFoundException:
+                    try:
+                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                    except pg.ImageNotFoundException:
+                        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
+                        pg.doubleClick(x=321, y=630)
+                        pg.hotkey('ctrl', 'c')
+                        unformat()
+                    else:
+                        pyperclip.copy('Indisponível')
+                else:
+                    pyperclip.copy('Indisponível')
+                
+                #excel compel
+                alttab()
+                pg.click(x=56, y=181)
+                pg.write('e' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+10')
+                    pg.press('enter')
+
+                #pesquisa dpk
+                alttab()
+                pg.hotkey('ctrl', '4')
+                pg.doubleClick(x=642, y=251)
+                pg.hotkey('ctrl', 'a')
+                
+                digitar(codigo)
+                pg.press('enter')
+                time.sleep(2)
+                try:
+                    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+                except pg.ImageNotFoundException:
+                    pyperclip.copy('Indisponível')
+                else:
+                    pg.doubleClick(x=669, y=504)
+                    pg.hotkey('ctrl', 'c')
+                    unformat()  
+
+                #excel dpk
+                alttab()
+                pg.click(x=56, y=181)
+                pg.write('f' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+10')
+                    pg.press('enter')
+            else:
+                alttab()
+                pg.hotkey('ctrl', '1')
+                pg.hotkey('alt', 'left')
+                time.sleep(1)
+                for c in range(0, 8):
+                    pg.press('tab')
+                digitar(codigo)
+                pg.press('enter')
+                time.sleep(1.5)
+                while True:
+                    try:
+                        sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+                    except pg.ImageNotFoundException:
+                        break
+                    else:
+                        pg.press('f5')
+                        time.sleep(1.5)
+                try:
+                    print('Verificando indisponibilidade...')
+                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+                except pg.ImageNotFoundException:
+                    print('Peça disponível')
+                    enquantonao(r'imagens/marcas_peca.ai.png')
+                    pg.click(x=560, y=690)
+                    enquantonao(r'imagens/comprar_peca.ai.png')
+                    pg.click(x=109, y=650)
+                    pg.click(x=109, y=650)
+                    pg.hotkey('ctrl', 'c') 
+                    unformat()
+                else:
+                    print('Peça indisponível')
+                    pyperclip.copy('Indisponível')
+                
+                # excel peca.ai
+                alttab()
+                escrever_celula('b' + str(celula_excel), codigo)
+                pg.click(x=23, y=184)
+                pg.click(x=23, y=184)
+                pg.write('c' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+15')
+                    pg.press('enter')
+
+                #pesquisa mecanizou
+                alttab()
+                pg.hotkey('ctrl', '2')
+                pg.hotkey('alt', 'left')
+                time.sleep(3)
+                pg.press('tab')
+                digitar(codigo)         
+                pg.press('enter')
+                time.sleep(3)
+                try:
+                    disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+                except pg.ImageNotFoundException:
+                    pyperclip.copy('Indisponível')
+                else:
+                    pg.click(x=500, y=491)
+                    time.sleep(0.5)
+                    pg.doubleClick(x=988, y=403)
+                    pg.hotkey('ctrl', 'c')
+                    unformat()
+
+                #excel mecanizou
+                alttab()
+                pg.click(x=56, y=181)
+                pg.write('d' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+7')
+                    pg.press('enter')
+
+                #compel pesquisa
+                alttab()
+                pg.hotkey('ctrl', '3')
+                pg.doubleClick(x=600, y=367)
+                pg.hotkey('ctrl', 'a')
+                digitar(codigo)
+                pg.press('enter')
+                time.sleep(2)
+                try:
+                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+                except pg.ImageNotFoundException:
+                    try:
+                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                    except pg.ImageNotFoundException:
+                        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
+                        pg.doubleClick(x=321, y=630)
+                        pg.hotkey('ctrl', 'c')
+                        unformat()
+                    else:
+                        pyperclip.copy('Indisponível')
+                else:
+                    pyperclip.copy('Indisponível')
+                
+                #excel compel
+                alttab()
+                pg.click(x=56, y=181)
+                pg.write('e' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+10')
+                    pg.press('enter')
+
+                #pesquisa dpk
+                alttab()
+                pg.hotkey('ctrl', '4')
+                pg.doubleClick(x=642, y=251)
+                pg.hotkey('ctrl', 'a')
+                
+                digitar(codigo)
+                pg.press('enter')
+                time.sleep(2)
+                try:
+                    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+                except pg.ImageNotFoundException:
+                    pyperclip.copy('Indisponível')
+                else:
+                    pg.doubleClick(x=669, y=504)
+                    pg.hotkey('ctrl', 'c')
+                    unformat()  
+
+                #excel dpk
+                alttab()
+                pg.click(x=56, y=181)
+                pg.write('f' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+10')
+                    pg.press('enter')
             celula_excel += 1
         celula_peca += 3

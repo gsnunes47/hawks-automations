@@ -4,6 +4,6 @@ HOURS WORKED ON RPA
 11/jan = 60 + 70
 12/jan = 68 + 64 + 10
 15/jan = 30 + 102 + 27 + 38
-16/jan = 
+16/jan = 120 
 
-TOTAL minutes: 1023 
+TOTAL minutes: 1143 (19 horas)
