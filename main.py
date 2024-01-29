@@ -3,6 +3,7 @@ import pyautogui as pg
 import pyperclip
 
 pg.FAILSAFE = True
+
 c = 1 
 c2 = 1
 produtos = []
@@ -22,6 +23,7 @@ while True:
         continue
     else:
         break
+
 # produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
 # produtos = [['dyv607', 't36083', 'vkm4790'], ['sk421', 'mb4030'], ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 codigo = str(produtos[0][0])
@@ -75,7 +77,10 @@ else:
     pyperclip.copy('Indisponível')
 
 # abrir o excel
-pg.hotkey('ctrl', 'shift', 'alt', 'win', 'x')
+# pg.hotkey('ctrl', 'shift', 'alt', 'win', 'x')
+pg.hotkey('win', 'r')
+pg.write('excel')
+pg.press('enter')
 time.sleep(5)
 pg.press('tab')
 pg.press('tab')
@@ -100,10 +105,10 @@ else:
 
 #pegar nome da peça
 alttab()
-pg.doubleClick(x=306, y=316)
-pg.click(x=306, y=316)
+pg.doubleClick(x=307, y=247)
+pg.click(x=307, y=247)
 pg.hotkey('ctrl', 'c')
-text = pyperclip.paste().split('/')[0]
+text = pyperclip.paste().split('-')[0]
 alttab()
 escrever_celula('a2', text)
 
@@ -160,14 +165,18 @@ try:
     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
 except pg.ImageNotFoundException:
     try:
-        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+        pg.click(x=780, y=585)
+        time.sleep(1)
+        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
     except pg.ImageNotFoundException:
-        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
-        pg.doubleClick(x=321, y=630)
-        pg.hotkey('ctrl', 'c')
-        unformat()
-    else:
+        pg.press('esc')
         pyperclip.copy('Indisponível')
+    else:
+        time.sleep(5)
+        pg.doubleClick(x=701, y=339)
+        pg.hotkey('ctrl', 'c')
+        pg.press('esc')
+        unformat()
 else:
     pyperclip.copy('Indisponível')
 
@@ -327,14 +336,18 @@ for peça in produtos:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
                     try:
-                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                        pg.click(x=780, y=585)
+                        time.sleep(1)
+                        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
                     except pg.ImageNotFoundException:
-                        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
-                        pg.doubleClick(x=321, y=630)
-                        pg.hotkey('ctrl', 'c')
-                        unformat()
-                    else:
                         pyperclip.copy('Indisponível')
+                        pg.press('esc')
+                    else:
+                        time.sleep(5)
+                        pg.doubleClick(x=701, y=339)
+                        pg.hotkey('ctrl', 'c')
+                        pg.press('esc')
+                        unformat()
                 else:
                     pyperclip.copy('Indisponível')
                 
@@ -478,14 +491,18 @@ for peça in produtos:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
                     try:
-                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                        pg.click(x=780, y=585)
+                        time.sleep(1)
+                        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
                     except pg.ImageNotFoundException:
-                        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
-                        pg.doubleClick(x=321, y=630)
-                        pg.hotkey('ctrl', 'c')
-                        unformat()
-                    else:
                         pyperclip.copy('Indisponível')
+                        pg.press('esc')
+                    else:
+                        time.sleep(5)
+                        pg.doubleClick(x=701, y=339)
+                        pg.hotkey('ctrl', 'c')
+                        pg.press('esc')
+                        unformat()
                 else:
                     pyperclip.copy('Indisponível')
                 
@@ -587,10 +604,10 @@ for peça in produtos:
 
                 #pegar nome da peça
                 alttab()
-                pg.doubleClick(x=306, y=316)
-                pg.click(x=306, y=316)
+                pg.doubleClick(x=307, y=247)
+                pg.click(x=307, y=247)
                 pg.hotkey('ctrl', 'c')
-                text = pyperclip.paste().split('/')[0]
+                text = pyperclip.paste().split('-')[0]
                 alttab()
                 escrever_celula('a' + str(celula_excel), text)
 
@@ -639,14 +656,18 @@ for peça in produtos:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
                     try:
-                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                        pg.click(x=780, y=585)
+                        time.sleep(1)
+                        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
                     except pg.ImageNotFoundException:
-                        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
-                        pg.doubleClick(x=321, y=630)
-                        pg.hotkey('ctrl', 'c')
-                        unformat()
-                    else:
                         pyperclip.copy('Indisponível')
+                        pg.press('esc')
+                    else:
+                        time.sleep(5)
+                        pg.doubleClick(x=701, y=339)
+                        pg.hotkey('ctrl', 'c')
+                        pg.press('esc')
+                        unformat()
                 else:
                     pyperclip.copy('Indisponível')
                 
@@ -787,14 +808,18 @@ for peça in produtos:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
                     try:
-                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_compel.png')
+                        pg.click(x=780, y=585)
+                        time.sleep(1)
+                        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
                     except pg.ImageNotFoundException:
-                        # enquantonao(r'imagens/enquantonao_compel.png') #time.sleep(12)
-                        pg.doubleClick(x=321, y=630)
-                        pg.hotkey('ctrl', 'c')
-                        unformat()
-                    else:
                         pyperclip.copy('Indisponível')
+                        pg.press('esc')
+                    else:
+                        time.sleep(5)
+                        pg.doubleClick(x=701, y=339)
+                        pg.hotkey('ctrl', 'c')
+                        pg.press('esc')
+                        unformat()
                 else:
                     pyperclip.copy('Indisponível')
                 
