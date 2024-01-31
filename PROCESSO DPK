@@ -1,0 +1,12 @@
+apos pesquisa do código:
+
+verificar se há resultados
+clicar em similares - primeiro item pg.click(x=110, y=537)
+verificar disponibilidade com foto - indisponivel_compel2.png
+caso houver:
+    pg.doubleClick(x=1014, y=260)
+    pg.hotkey('ctrl', 'c')
+    unformat()
+    pg.doubleClick(x=1316, y=168)
+
+    #excel
