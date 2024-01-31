@@ -210,15 +210,25 @@ time.sleep(0.5)
 pg.click(x=301, y=251)
 digitar(codigo)
 pg.press('enter')
-time.sleep(2)
+time.sleep(1)
 try:
-    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+    resultado = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
 except pg.ImageNotFoundException:
-    pyperclip.copy('Indisponível')
+    pg.click(x=110, y=537)
+    try:
+        disponibilidade = pg.locateOnScreen(r'imagens/indisponivel_compel2.png')
+    except pg.ImageNotFoundException:
+        pg.doubleClick(x=1014, y=260)
+        pg.hotkey('ctrl', 'c')
+        unformat()
+        pg.click(x=1316, y=168)
+    else:
+        pyperclip.copy('Indisponível')
 else:
-    pg.doubleClick(x=669, y=504)
-    pg.hotkey('ctrl', 'c')
-    unformat()  
+    pyperclip.copy('Indisponível')
+
+if str(pyperclip.paste()) == codigo:
+    pyperclip.copy('Indisponível')
 
 #excel dpk
 alttab()
@@ -232,7 +242,6 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+10')
     pg.press('enter')
-
 
 #loop a partir do segundo código    
 celula_peca = 2
@@ -369,23 +378,32 @@ for peça in produtos:
                     pg.write('+10')
                     pg.press('enter')
 
-                #pesquisa dpk
+                #dpk pesquisa
                 alttab()
                 pg.hotkey('ctrl', '4')
                 pg.doubleClick(x=642, y=251)
                 pg.hotkey('ctrl', 'a')
-                
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(1)
                 try:
-                    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+                    resultado = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
                 except pg.ImageNotFoundException:
-                    pyperclip.copy('Indisponível')
+                    pg.click(x=110, y=537)
+                    try:
+                        disponibilidade = pg.locateOnScreen(r'imagens/indisponivel_compel2.png')
+                    except pg.ImageNotFoundException:
+                        pg.doubleClick(x=1014, y=260)
+                        pg.hotkey('ctrl', 'c')
+                        unformat()
+                        pg.click(x=1316, y=168)
+                    else:
+                        pyperclip.copy('Indisponível')
                 else:
-                    pg.doubleClick(x=669, y=504)
-                    pg.hotkey('ctrl', 'c')
-                    unformat()  
+                    pyperclip.copy('Indisponível')
+
+                if str(pyperclip.paste()) == codigo:
+                    pyperclip.copy('Indisponível')
 
                 #excel dpk
                 alttab()
@@ -525,23 +543,32 @@ for peça in produtos:
                     pg.write('+10')
                     pg.press('enter')
 
-                #pesquisa dpk
+                #dpk pesquisa
                 alttab()
                 pg.hotkey('ctrl', '4')
                 pg.doubleClick(x=642, y=251)
                 pg.hotkey('ctrl', 'a')
-                
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(1)
                 try:
-                    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+                    resultado = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
                 except pg.ImageNotFoundException:
-                    pyperclip.copy('Indisponível')
+                    pg.click(x=110, y=537)
+                    try:
+                        disponibilidade = pg.locateOnScreen(r'imagens/indisponivel_compel2.png')
+                    except pg.ImageNotFoundException:
+                        pg.doubleClick(x=1014, y=260)
+                        pg.hotkey('ctrl', 'c')
+                        unformat()
+                        pg.click(x=1316, y=168)
+                    else:
+                        pyperclip.copy('Indisponível')
                 else:
-                    pg.doubleClick(x=669, y=504)
-                    pg.hotkey('ctrl', 'c')
-                    unformat()  
+                    pyperclip.copy('Indisponível')
+
+                if str(pyperclip.paste()) == codigo:
+                    pyperclip.copy('Indisponível')
 
                 #excel dpk
                 alttab()
@@ -691,24 +718,33 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'v')
                     pg.write('+10')
                     pg.press('enter')
-
-                #pesquisa dpk
+                
+                #dpk pesquisa
                 alttab()
                 pg.hotkey('ctrl', '4')
                 pg.doubleClick(x=642, y=251)
                 pg.hotkey('ctrl', 'a')
-                
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(1)
                 try:
-                    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+                    resultado = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
                 except pg.ImageNotFoundException:
-                    pyperclip.copy('Indisponível')
+                    pg.click(x=110, y=537)
+                    try:
+                        disponibilidade = pg.locateOnScreen(r'imagens/indisponivel_compel2.png')
+                    except pg.ImageNotFoundException:
+                        pg.doubleClick(x=1014, y=260)
+                        pg.hotkey('ctrl', 'c')
+                        unformat()
+                        pg.click(x=1316, y=168)
+                    else:
+                        pyperclip.copy('Indisponível')
                 else:
-                    pg.doubleClick(x=669, y=504)
-                    pg.hotkey('ctrl', 'c')
-                    unformat()  
+                    pyperclip.copy('Indisponível')
+
+                if str(pyperclip.paste()) == codigo:
+                    pyperclip.copy('Indisponível')
 
                 #excel dpk
                 alttab()
@@ -846,23 +882,32 @@ for peça in produtos:
                     pg.write('+10')
                     pg.press('enter')
 
-                #pesquisa dpk
+                #dpk pesquisa
                 alttab()
                 pg.hotkey('ctrl', '4')
                 pg.doubleClick(x=642, y=251)
                 pg.hotkey('ctrl', 'a')
-                
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(1)
                 try:
-                    quantidade = pg.locateOnScreen(r'imagens/enquantonao_kdapeca.png')
+                    resultado = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
                 except pg.ImageNotFoundException:
-                    pyperclip.copy('Indisponível')
+                    pg.click(x=110, y=537)
+                    try:
+                        disponibilidade = pg.locateOnScreen(r'imagens/indisponivel_compel2.png')
+                    except pg.ImageNotFoundException:
+                        pg.doubleClick(x=1014, y=260)
+                        pg.hotkey('ctrl', 'c')
+                        unformat()
+                        pg.click(x=1316, y=168)
+                    else:
+                        pyperclip.copy('Indisponível')
                 else:
-                    pg.doubleClick(x=669, y=504)
-                    pg.hotkey('ctrl', 'c')
-                    unformat()  
+                    pyperclip.copy('Indisponível')
+
+                if str(pyperclip.paste()) == codigo:
+                    pyperclip.copy('Indisponível')
 
                 #excel dpk
                 alttab()
@@ -876,5 +921,6 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'v')
                     pg.write('+10')
                     pg.press('enter')
+
             celula_excel += 1
         celula_peca += 3
