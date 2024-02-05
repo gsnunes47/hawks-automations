@@ -1,9 +1,26 @@
-HOURS WORKED ON RPA
+Activities:
 
-10/jan = 138 + 23
-11/jan = 60 + 70
-12/jan = 68 + 64 + 10
-15/jan = 30 + 102 + 27 + 38
-16/jan = 120 
+- Implementar pausa do robo
 
-TOTAL minutes: 1143 (19 horas)
+
+
+- Consertar processo compel
+
+    - Sem resultado - 231231232131
+
+    - Sem estoque - T36083
+
+    - Mais de uma peça - t3608
+    
+
+
+- Consertar processo dpk (CONDENADO)
+
+    - Sem resultado - 231231232131
+
+    - Indisponível - ph2966
+
+    - Mais de uma peça - wo1
+
+- Corrigir função de pegar nome
+

@@ -11,7 +11,6 @@ def enquantonao(imagem):
         else:
             break
         break
-    return img
     # print()
 
 def clickar_imagem(img):
