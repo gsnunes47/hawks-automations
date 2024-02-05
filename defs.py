@@ -41,6 +41,21 @@ def escrever_celula(cell, txt):
     pg.press('enter')
     time.sleep(0.25)
 
+def colar_celula(cell, txt):
+    pg.click(x=23, y=184)
+    pg.click(x=23, y=184)
+    pg.write(cell)
+    time.sleep(0.25)
+    pg.press('enter')
+    time.sleep(0.25)
+    pg.click(x=259, y=183)
+    time.sleep(0.25)
+    pyperclip.copy(txt)
+    pg.hotkey('ctrl' ,'v')
+    time.sleep(0.25)
+    pg.press('enter')
+    time.sleep(0.25)
+
 def abrir_site(link): 
     pg.click(x=182, y=67)
     pg.click(x=182, y=67)

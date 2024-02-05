@@ -5,32 +5,32 @@ import pyperclip
 pg.FAILSAFE = True
 
 #menu
-# c = 1 
-# c2 = 1
-# produtos = []
-# while True:
-#     peça = []
-#     c2 = 1
-#     while c2 < 4:
-#             break
-#         codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
-#         if codigo == None:
-#         peça.append(codigo)
-#         c2 += 1
-#     produtos.append(peça)
-#     c += 1
-#     escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
-#     if escolha == 'Sim':
-#         continue  
-#     else:
-#         break
+c = 1 
+c2 = 1
+produtos = []
+while True:
+    peça = []
+    c2 = 1
+    while c2 < 4:
+        codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
+        if codigo == None:
+            break
+        peça.append(codigo)
+        c2 += 1
+    produtos.append(peça)
+    c += 1
+    escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
+    if escolha == 'Sim':
+        continue
+    else:
+        break
 
 # produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
-produtos = [['dyv607', 't36083', 'vkm4790'], ['sk421', 'mb4030'], ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
+# produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
-pg.hotkey('win', 'r')      
+pg.hotkey('win', 'r')
 time.sleep(0.25)
 digitar('chrome')
 pg.press('enter')
@@ -84,6 +84,7 @@ pg.hotkey('win', 'r')
 pg.write('excel')
 pg.press('enter')
 time.sleep(5)
+pg.hotkey('win', 'up')
 pg.press('tab')
 pg.press('tab')
 pg.write('Planilha de Base para Cotacao')   
@@ -112,7 +113,7 @@ pg.click(x=307, y=247)
 pg.hotkey('ctrl', 'c')
 text = pyperclip.paste().split('-')[0]
 alttab()
-escrever_celula('a2', text)
+colar_celula('a2', text)
 
 #pesquisa mecanizou
 alttab()
@@ -122,7 +123,8 @@ time.sleep(2)
 pg.press('tab')
 digitar(codigo)
 pg.press('enter')
-time.sleep(3)
+# time.sleep(3)
+enquantonao(r'imagens/marcas_mecanizou.png')
 try:
     disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
 except pg.ImageNotFoundException:
@@ -146,7 +148,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+7')
     pg.press('enter')  
-
+    
 #compel pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
@@ -162,7 +164,7 @@ time.sleep(1)
 pg.click(x=404, y=417) #verificação
 digitar(codigo)
 pg.press('enter')
-time.sleep(2)
+time.sleep(3.5)
 try:
     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
 except pg.ImageNotFoundException:
@@ -252,7 +254,7 @@ else:
     pg.write('+10')
     pg.press('enter')
 
-#loop a partir do segundo código    
+#loop a partir do segundo código
 celula_peca = 2
 for peça in produtos:
     celula_excel = celula_peca
@@ -320,7 +322,7 @@ for peça in produtos:
                 pg.press('tab')
                 digitar(codigo)         
                 pg.press('enter')
-                time.sleep(3)
+                enquantonao(r'imagens/marcas_mecanizou.png')
                 try:
                     disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
                 except pg.ImageNotFoundException:
@@ -352,7 +354,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'a')
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(3.5)
                 try:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
@@ -497,7 +499,7 @@ for peça in produtos:
                 pg.press('tab')
                 digitar(codigo)         
                 pg.press('enter')
-                time.sleep(3)
+                enquantonao(r'imagens/marcas_mecanizou.png')
                 try:
                     disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
                 except pg.ImageNotFoundException:
@@ -530,7 +532,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'a')
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(3.5)
                 try:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
@@ -679,7 +681,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'c')
                 text = pyperclip.paste().split('-')[0]
                 alttab()
-                escrever_celula('a' + str(celula_excel), text)
+                colar_celula('a' + str(celula_excel), text)
 
                 #pesquisa mecanizou
                 alttab()
@@ -689,7 +691,7 @@ for peça in produtos:
                 pg.press('tab')
                 digitar(codigo)         
                 pg.press('enter')
-                time.sleep(3)
+                enquantonao(r'imagens/marcas_mecanizou.png')
                 try:
                     disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
                 except pg.ImageNotFoundException:
@@ -721,7 +723,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'a')
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(3.5)
                 try:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
@@ -864,7 +866,7 @@ for peça in produtos:
                 pg.press('tab')
                 digitar(codigo)         
                 pg.press('enter')
-                time.sleep(3)
+                enquantonao(r'imagens/marcas_mecanizou.png')
                 try:
                     disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
                 except pg.ImageNotFoundException:
@@ -896,7 +898,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'a')
                 digitar(codigo)
                 pg.press('enter')
-                time.sleep(2)
+                time.sleep(3.5)
                 try:
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
                 except pg.ImageNotFoundException:
