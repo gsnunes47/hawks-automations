@@ -22,7 +22,7 @@ import time
 #         break
 
 # produtos = [['ph2966'], ['4893', '0111247', 'mb9009']]
-produtos = [['t3608', '231231232131', 'wo1'], ['T36083', 'sp271', 'sk421'], ['vkm4790']]
+produtos = [['sp271', 't3608', 'wo1'], ['T36083', 'sp271', 'sk421'], ['vkm4790']]
 # codigo = produtos[0][0]
 
 #TAB SET
@@ -40,49 +40,31 @@ for peça in produtos:
     for codigo in peça:
         celula_excel = celula_peca
         
-        #dpk pesquisa
         alttab()
-        pg.hotkey('ctrl', '4')
-        pg.click(x=15, y=518)
-        for c in range(0,3):
-            pg.press('up')
-        pg.doubleClick(x=314, y=326)
-        pg.write(codigo)
-        pg.press('enter')
-        time.sleep(1.5)
-
-        pg.click(x=901, y=329)
-        for c in range(0,3):
-            pg.press('down')
-
-        try:
-            comercializado = pg.locateOnScreen(r'imagens/nao_comercializado.png')
-        except pg.ImageNotFoundException:
-            try:
-                indisponivel = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
-            except pg.ImageNotFoundException:
-                try:
-                    estoque = pg.locateOnScreen(r'imagens/sem_estoque_kdapeca.png')
-                except pg.ImageNotFoundException:
-                    pg.doubleClick(x=788, y=705)
-                    pg.hotkey('ctrl', 'c')
-                    unformat()
-                else:
-                    pyperclip.copy('Indisponível')    
-            else:
-                pyperclip.copy('Indisponível')
-        else:
-            pyperclip.copy('Indisponível')
+        with pg.hold('ctrl'):
+            pg.press('1')
+        time.sleep(0.25)
+        pg.click(x=204, y=131)
+        pesquisa_peca_ai(codigo)
+        alttab()
+        excel_peca_ai(celula_excel, codigo=codigo)
         
-        #excel dpk
         alttab()
-        pg.click(x=56, y=181)
-        pg.write('f2')
-        pg.press('enter')
-        if str(pyperclip.paste()) == 'Indisponível':
-            pg.hotkey('ctrl', 'v')
-        else:
-            pg.write('=')
-            pg.hotkey('ctrl', 'v')
-            pg.write('+10')
-            pg.press('enter')
+        with pg.hold('ctrl'):
+            pg.press('2')
+        time.sleep(0.25)
+        pg.hotkey('alt', 'left')
+        pesquisa_mecanizou(codigo)
+        alttab()
+        excel_mecanizou(celula_excel)
+
+        alttab()
+        with pg.hold('ctrl'):
+            pg.press('3')
+        time.sleep(0.25)
+        pg.hotkey('alt', 'left')
+        pesquisa_compel(codigo)
+        alttab()
+        excel_compel(celula_excel)
+
+        
