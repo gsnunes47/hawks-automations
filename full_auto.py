@@ -5,28 +5,28 @@ import pyperclip
 pg.FAILSAFE = True
 
 #menu
-c = 1 
-c2 = 1
-produtos = []
-while True:
-    peça = []
-    c2 = 1
-    while c2 < 4:
-        codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
-        if codigo == None:
-            break
-        peça.append(codigo)
-        c2 += 1
-    produtos.append(peça)
-    c += 1
-    escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
-    if escolha == 'Sim':
-        continue
-    else:
-        break
+# c = 1 
+# c2 = 1
+# produtos = []
+# while True:
+#     peça = []
+#     c2 = 1
+#     while c2 < 4:
+#         codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
+#         if codigo == None:
+#             break
+#         peça.append(codigo)
+#         c2 += 1
+#     produtos.append(peça)
+#     c += 1
+#     escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
+#     if escolha == 'Sim':
+#         continue
+#     else:
+#         break
 
 # produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
-# produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
+produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -34,22 +34,20 @@ pg.hotkey('win', 'r')
 time.sleep(0.25)
 digitar('chrome')
 pg.press('enter')
-time.sleep(1) # enquantonao(r'imagens/nova_guia.png')
+enquantonao(r'imagens/nova_guia.png')
 pg.hotkey('win', 'up')  
 abrir_site('peca.ai')
 
 #pesquisa peca.ai
-time.sleep(3.5) # enquantonao(r'imagens/enquantonao_peca.ai.png')
+enquantonao(r'imagens/enquantonao_peca.ai.png')
 clickar_imagem(r'imagens/busca_peca.ai.png')
 pg.press('tab')
 digitar(codigo)
-
 try:
     login = pg.locateOnScreen(r'imagens/logado_peca.ai.png')
 except pg.ImageNotFoundException:
     pg.press('enter')
     time.sleep(1)
-    # enquantonao(r'imagens/entrar_peca.ai.png')
     for c in range (0, 3):
         pg.press('tab')
     pg.press('enter')
@@ -69,7 +67,6 @@ while True:
 try:
     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
 except pg.ImageNotFoundException:
-    # enquantonao(r'imagens/marcas_peca.ai.png')
     pg.click(x=560, y=690)
     enquantonao(r'imagens/comprar_peca.ai.png')
     pg.click(x=151, y=651)
@@ -80,15 +77,16 @@ else:
     pyperclip.copy('Indisponível')
 
 # abrir o excel
+time.sleep(0.5)
 pg.hotkey('win', 'r')
 pg.write('excel')
 pg.press('enter')
-time.sleep(5)
+enquantonao(r'imagens/enquantonao_excel2.png')
 pg.hotkey('win', 'up')
 pg.press('tab')
 pg.press('tab')
 pg.write('Planilha de Base para Cotacao')   
-time.sleep(1)
+time.sleep(0.5)
 pg.press('enter')
 time.sleep(2)
 
@@ -119,11 +117,10 @@ colar_celula('a2', text)
 alttab()
 pg.hotkey('ctrl', 't')
 abrir_site('app.mecanizou.com')
-time.sleep(2)
+enquantonao(r'imagens/enquantonao_mecanizou2.png')
 pg.press('tab')
 digitar(codigo)
 pg.press('enter')
-# time.sleep(3)
 enquantonao(r'imagens/marcas_mecanizou.png')
 try:
     disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
@@ -160,8 +157,8 @@ except pg.ImageNotFoundException:
     pass
 else:
     pg.click(x=1248, y=366)
-time.sleep(1)
-pg.click(x=404, y=417) #verificação
+enquantonao(r'imagens/enquantonao_compel2.png')
+pg.click(x=404, y=417) 
 digitar(codigo)
 pg.press('enter')
 time.sleep(3.5)
@@ -176,13 +173,7 @@ except pg.ImageNotFoundException:
         pg.click(x=1125, y=147)
         pyperclip.copy('Indisponível')
     else:
-        while True:
-            try:
-                preco = pg.locateOnScreen(r'imagens/preco_compel.png')
-            except pg.ImageNotFoundException:
-                continue
-            else:
-                break
+        enquantonao(r'imagens/preco_compel.png')
         pg.doubleClick(x=701, y=339)
         pg.hotkey('ctrl', 'c')
         unformat()
@@ -284,10 +275,8 @@ for peça in produtos:
                         pg.press('f5')
                         time.sleep(1.5)
                 try:
-                    print('Verificando indisponibilidade...')
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    print('Peça disponível')
                     enquantonao(r'imagens/marcas_peca.ai.png')
                     pg.click(x=560, y=690)
                     enquantonao(r'imagens/comprar_peca.ai.png')
@@ -296,7 +285,6 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'c') 
                     unformat()
                 else:
-                    print('Peça indisponível')
                     pyperclip.copy('Indisponível')
                 
                 # excel peca.ai
@@ -461,10 +449,8 @@ for peça in produtos:
                         pg.press('f5')
                         time.sleep(1.5)
                 try:
-                    print('Verificando indisponibilidade...')
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    print('Peça disponível')
                     enquantonao(r'imagens/marcas_peca.ai.png')
                     pg.click(x=560, y=690)
                     enquantonao(r'imagens/comprar_peca.ai.png')
@@ -473,7 +459,6 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'c') 
                     unformat()
                 else:
-                    print('Peça indisponível')
                     pyperclip.copy('Indisponível')
                 
                 # excel peca.ai
@@ -644,10 +629,8 @@ for peça in produtos:
                         pg.press('f5')
                         time.sleep(1.5)
                 try:
-                    print('Verificando indisponibilidade...')
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    print('Peça disponível')
                     enquantonao(r'imagens/marcas_peca.ai.png')
                     pg.click(x=560, y=690)
                     enquantonao(r'imagens/comprar_peca.ai.png')
@@ -656,7 +639,6 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'c') 
                     unformat()
                 else:
-                    print('Peça indisponível')
                     pyperclip.copy('Indisponível')
                 
                 # excel peca.ai
@@ -828,10 +810,8 @@ for peça in produtos:
                         pg.press('f5')
                         time.sleep(1.5)
                 try:
-                    print('Verificando indisponibilidade...')
                     indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    print('Peça disponível')
                     enquantonao(r'imagens/marcas_peca.ai.png')
                     pg.click(x=560, y=690)
                     enquantonao(r'imagens/comprar_peca.ai.png')
@@ -839,8 +819,7 @@ for peça in produtos:
                     pg.click(x=109, y=650)
                     pg.hotkey('ctrl', 'c') 
                     unformat()
-                else:
-                    print('Peça indisponível')
+                else:   
                     pyperclip.copy('Indisponível')
                 
                 # excel peca.ai
@@ -857,6 +836,16 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'v')
                     pg.write('+15')
                     pg.press('enter')
+
+                if codigo == peça[0]:
+                    #pegar nome da peça
+                    alttab()
+                    pg.doubleClick(x=307, y=247)
+                    pg.click(x=307, y=247)
+                    pg.hotkey('ctrl', 'c')
+                    text = pyperclip.paste().split('-')[0]
+                    alttab()
+                    colar_celula('a' + str(celula_excel), text)
 
                 #pesquisa mecanizou
                 alttab()

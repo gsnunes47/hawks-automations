@@ -10,8 +10,6 @@ def enquantonao(imagem):
             continue
         else:
             break
-        break
-    # print()
 
 def clickar_imagem(img):
     x, y, largura, altura = pg.locateOnScreen(img, grayscale=True)
