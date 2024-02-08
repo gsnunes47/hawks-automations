@@ -16,8 +16,6 @@ pg.write(codigo)
 pg.press('enter')
 
 enquantonao(r'imagens/enquantonao_rmp2.png')
-
-
 try:
     sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_rmp.png')
 except pg.ImageNotFoundException:
@@ -32,5 +30,5 @@ except pg.ImageNotFoundException:
         unformat()
 else:
     pyperclip.copy('Indisponível')
-
+    
 print(pyperclip.paste())

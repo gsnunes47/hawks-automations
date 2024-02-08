@@ -5,28 +5,28 @@ import pyperclip
 pg.FAILSAFE = True
 
 #menu
-# c = 1 
-# c2 = 1
-# produtos = []
-# while True:
-#     peça = []
-#     c2 = 1
-#     while c2 < 4:
-#         codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
-#         if codigo == None:
-#             break
-#         peça.append(codigo)
-#         c2 += 1
-#     produtos.append(peça)
-#     c += 1
-#     escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
-#     if escolha == 'Sim':
-#         continue
-#     else:
-#         break
+c = 1 
+c2 = 1
+produtos = []
+while True:
+    peça = []
+    c2 = 1
+    while c2 < 4:
+        codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
+        if codigo == None:
+            break
+        peça.append(codigo)
+        c2 += 1
+    produtos.append(peça)
+    c += 1
+    escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
+    if escolha == 'Sim':
+        continue
+    else:
+        break
 
-# produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
-produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
+# # produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
+# produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -81,7 +81,8 @@ time.sleep(0.5)
 pg.hotkey('win', 'r')
 pg.write('excel')
 pg.press('enter')
-enquantonao(r'imagens/enquantonao_excel2.png')
+time.sleep(2)
+# enquantonao(r'imagens/enquantonao_excel.png')
 pg.hotkey('win', 'up')
 pg.press('tab')
 pg.press('tab')
@@ -791,8 +792,8 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'v')
                 pg.write('+10')
                 pg.press('enter')
-        #não mecher
-        celula_excel += 1
+            #não mecher
+            celula_excel += 1
     
     if peça != produtos[0]:
         celula_peca += 3
