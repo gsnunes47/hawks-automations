@@ -17,6 +17,7 @@ pg.press('enter')
 
 enquantonao(r'imagens/enquantonao_rmp2.png')
 
+
 try:
     sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_rmp.png')
 except pg.ImageNotFoundException:

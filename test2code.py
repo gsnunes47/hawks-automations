@@ -22,7 +22,7 @@ import time
 #         break
 
 # produtos = [['ph2966'], ['4893', '0111247', 'mb9009']]
-produtos = [['sp271', 't3608', 'wo1'], ['T36083', 'sp271', 'sk421'], ['vkm4790']]
+produtos = [['t3608','sp271', 'wo1'], ['T36083', 'sp271', 'sk421'], ['vkm4790']]
 # codigo = produtos[0][0]
 
 #TAB SET
@@ -67,4 +67,12 @@ for peça in produtos:
         alttab()
         excel_compel(celula_excel)
 
-        
+        alttab()
+        with pg.hold('ctrl'):
+            pg.press('4')
+        pg.click(x=15, y=518)
+        for c in range(0,3):
+            pg.press('up')
+        pesquisa_kdapeca(codigo)
+        alttab()
+        excel_kdapeca(celula_excel)

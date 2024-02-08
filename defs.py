@@ -255,12 +255,8 @@ def excel_compel(cell):
 
 #dpk pesquisa
 def pesquisa_kdapeca(codigo):    
-    time.sleep(3.5)
-    pg.doubleClick(x=1166, y=709)
-    time.sleep(1)
-    pg.press('esc')
-    time.sleep(0.5)
     pg.click(x=314, y=326)
+    pg.hotkey('ctrl', 'a')
     digitar(codigo)
     pg.press('enter')
     time.sleep(1.5)
@@ -288,9 +284,8 @@ def pesquisa_kdapeca(codigo):
 
 #excel dpk
 def excel_kdapeca(cell):
-    alttab()
     pg.click(x=56, y=181)
-    pg.write(cell)
+    pg.write('f' + str(cell))
     pg.press('enter')
     if str(pyperclip.paste()) == 'Indisponível':
         pg.hotkey('ctrl', 'v')
