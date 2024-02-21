@@ -1,3 +1,55 @@
+
+
+NEW::
+
+ - ELETRON
+
+ - Ctrl + a - kdapeca
+
+ - MECANIZOU -- W719/30 | C14130
+
+ - Adicionar RMP
+
+ - PAUSA
+
+ - TRAÇOS E BARRAS COMPEL -- WO-1 | AKX-1100/C
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Activities:
 
 - Implementar pausa do robo
@@ -23,4 +75,3 @@ Activities:
     - Mais de uma peça - wo1
 
 - Corrigir função de pegar nome
-

@@ -13,10 +13,13 @@ codigo = str(produtos[0][0])
 #     pg.click(x=314, y=326)
 
 # abrir o excel
-while True:
-    try:
-        locate = pg.locateOnScreen(r'imagens/enquantonao_mecanizou2.png')
-    except pg.ImageNotFoundException:
-        continue
-    else:
-        print('na tela')
+# while True:
+#     try:
+#         locate = pg.locateOnScreen(r'imagens/enquantonao_mecanizou2.png')
+#     except pg.ImageNotFoundException:
+#         continue
+#     else:
+#         print('na tela')
+
+code = int(pg.password(f'''Qual código você deseja corrigir? (Digite apenas o número) code''', title='Cotação RPA')) - 1
+print(code, type(code))

@@ -34,17 +34,17 @@ pg.hotkey('win', 'r')
 time.sleep(0.25)
 digitar('chrome')
 pg.press('enter')
-enquantonao(r'imagens/nova_guia.png')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png')#C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png
 pg.hotkey('win', 'up')  
 abrir_site('peca.ai')
 
 #pesquisa peca.ai
-enquantonao(r'imagens/enquantonao_peca.ai.png')
-clickar_imagem(r'imagens/busca_peca.ai.png')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_peca.ai.png')
+clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\busca_peca.ai.png')
 pg.press('tab')
 digitar(codigo)
 try:
-    login = pg.locateOnScreen(r'imagens/logado_peca.ai.png')
+    login = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\logado_peca.ai.png')
 except pg.ImageNotFoundException:
     pg.press('enter')
     time.sleep(1)
@@ -57,7 +57,7 @@ time.sleep(1.5)
 
 while True:
     try:
-        sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+        sem_resultado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_resultado_peca.ai.png')
     except pg.ImageNotFoundException:
         break
     else:
@@ -65,10 +65,10 @@ while True:
         time.sleep(1.5)
 
 try:
-    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
 except pg.ImageNotFoundException:
     pg.click(x=560, y=690)
-    enquantonao(r'imagens/comprar_peca.ai.png')
+    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
     pg.click(x=151, y=651)
     pg.click(x=151, y=651)
     pg.hotkey('ctrl', 'c') 
@@ -82,7 +82,7 @@ pg.hotkey('win', 'r')
 pg.write('excel')
 pg.press('enter')
 time.sleep(2)
-# enquantonao(r'imagens/enquantonao_excel.png')
+# enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_excel.png')
 pg.hotkey('win', 'up')
 pg.press('tab')
 pg.press('tab')
@@ -118,13 +118,13 @@ colar_celula('a2', text)
 alttab()
 pg.hotkey('ctrl', 't')
 abrir_site('app.mecanizou.com')
-enquantonao(r'imagens/enquantonao_mecanizou2.png')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou2.png')
 pg.press('tab')
 digitar(codigo)
 pg.press('enter')
-enquantonao(r'imagens/marcas_mecanizou.png')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_mecanizou.png')
 try:
-    disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+    disponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
 except pg.ImageNotFoundException:
     pyperclip.copy('Indisponível')
 else:
@@ -153,28 +153,28 @@ pg.hotkey('ctrl', 't')
 abrir_site('https://peca.compel.com.br/')
 time.sleep(1)
 try:
-    img = pg.locateOnScreen(r'imagens/acessar_compel.png')
+    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\acessar_compel.png')
 except pg.ImageNotFoundException:
     pass
 else:
     pg.click(x=1248, y=366)
-enquantonao(r'imagens/enquantonao_compel2.png')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_compel2.png')
 pg.click(x=404, y=417) 
 digitar(codigo)
 pg.press('enter')
 time.sleep(3.5)
 try:
-    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_compel.png')
 except pg.ImageNotFoundException:
     try:
         pg.click(x=780, y=585)
         time.sleep(1.5)
-        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
+        estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\disponivel_compel.png')
     except pg.ImageNotFoundException:
         pg.click(x=1125, y=147)
         pyperclip.copy('Indisponível')
     else:
-        enquantonao(r'imagens/preco_compel.png')
+        enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
         pg.doubleClick(x=701, y=339)
         pg.hotkey('ctrl', 'c')
         unformat()
@@ -215,13 +215,13 @@ for c in range(0,3):
     pg.press('down')
 
 try:
-    comercializado = pg.locateOnScreen(r'imagens/nao_comercializado.png')
+    comercializado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nao_comercializado.png')
 except pg.ImageNotFoundException:
     try:
-        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
+        indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_kdapeca.png')
     except pg.ImageNotFoundException:
         try:
-            estoque = pg.locateOnScreen(r'imagens/sem_estoque_kdapeca.png')
+            estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_estoque_kdapeca.png')
         except pg.ImageNotFoundException:
             pg.doubleClick(x=788, y=705)
             pg.hotkey('ctrl', 'c')
@@ -269,18 +269,18 @@ for peça in produtos:
                 time.sleep(1.5)
                 while True:
                     try:
-                        sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+                        sem_resultado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_resultado_peca.ai.png')
                     except pg.ImageNotFoundException:
                         break
                     else:
                         pg.press('f5')
                         time.sleep(1.5)
                 try:
-                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+                    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    enquantonao(r'imagens/marcas_peca.ai.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
                     pg.click(x=560, y=690)
-                    enquantonao(r'imagens/comprar_peca.ai.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
                     pg.click(x=109, y=650)
                     pg.click(x=109, y=650)
                     pg.hotkey('ctrl', 'c') 
@@ -311,9 +311,9 @@ for peça in produtos:
                 pg.press('tab')
                 digitar(codigo)         
                 pg.press('enter')
-                enquantonao(r'imagens/marcas_mecanizou.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_mecanizou.png')
                 try:
-                    disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+                    disponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
                 except pg.ImageNotFoundException:
                     pyperclip.copy('Indisponível')
                 else:
@@ -345,19 +345,19 @@ for peça in produtos:
                 pg.press('enter')
                 time.sleep(3.5)
                 try:
-                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+                    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_compel.png')
                 except pg.ImageNotFoundException:
                     try:
                         pg.click(x=780, y=585)
                         time.sleep(1.5)
-                        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
+                        estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\disponivel_compel.png')
                     except pg.ImageNotFoundException:
                         pg.click(x=1125, y=147)
                         pyperclip.copy('Indisponível')
                     else:
                         while True:
                             try:
-                                preco = pg.locateOnScreen(r'imagens/preco_compel.png')
+                                preco = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
                             except pg.ImageNotFoundException:
                                 continue
                             else:
@@ -399,13 +399,13 @@ for peça in produtos:
                     pg.press('down')
 
                 try:
-                    comercializado = pg.locateOnScreen(r'imagens/nao_comercializado.png')
+                    comercializado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nao_comercializado.png')
                 except pg.ImageNotFoundException:
                     try:
-                        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
+                        indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_kdapeca.png')
                     except pg.ImageNotFoundException:
                         try:
-                            estoque = pg.locateOnScreen(r'imagens/sem_estoque_kdapeca.png')
+                            estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_estoque_kdapeca.png')
                         except pg.ImageNotFoundException:
                             pg.doubleClick(x=788, y=705)
                             pg.hotkey('ctrl', 'c')
@@ -443,18 +443,18 @@ for peça in produtos:
                 time.sleep(1.5)
                 while True:
                     try:
-                        sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+                        sem_resultado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_resultado_peca.ai.png')
                     except pg.ImageNotFoundException:
                         break
                     else:
                         pg.press('f5')
                         time.sleep(1.5)
                 try:
-                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+                    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
                 except pg.ImageNotFoundException:
-                    enquantonao(r'imagens/marcas_peca.ai.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
                     pg.click(x=560, y=690)
-                    enquantonao(r'imagens/comprar_peca.ai.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
                     pg.click(x=109, y=650)
                     pg.click(x=109, y=650)
                     pg.hotkey('ctrl', 'c') 
@@ -485,9 +485,9 @@ for peça in produtos:
                 pg.press('tab')
                 digitar(codigo)         
                 pg.press('enter')
-                enquantonao(r'imagens/marcas_mecanizou.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_mecanizou.png')
                 try:
-                    disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+                    disponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
                 except pg.ImageNotFoundException:
                     pyperclip.copy('Indisponível')
                 else:
@@ -520,19 +520,19 @@ for peça in produtos:
                 pg.press('enter')
                 time.sleep(3.5)
                 try:
-                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+                    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_compel.png')
                 except pg.ImageNotFoundException:
                     try:
                         pg.click(x=780, y=585)
                         time.sleep(1.5)
-                        estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
+                        estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\disponivel_compel.png')
                     except pg.ImageNotFoundException:
                         pg.click(x=1125, y=147)
                         pyperclip.copy('Indisponível')
                     else:
                         while True:
                             try:
-                                preco = pg.locateOnScreen(r'imagens/preco_compel.png')
+                                preco = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
                             except pg.ImageNotFoundException:
                                 continue
                             else:
@@ -574,13 +574,13 @@ for peça in produtos:
                     pg.press('down')
 
                 try:
-                    comercializado = pg.locateOnScreen(r'imagens/nao_comercializado.png')
+                    comercializado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nao_comercializado.png')
                 except pg.ImageNotFoundException:
                     try:
-                        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
+                        indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_kdapeca.png')
                     except pg.ImageNotFoundException:
                         try:
-                            estoque = pg.locateOnScreen(r'imagens/sem_estoque_kdapeca.png')
+                            estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_estoque_kdapeca.png')
                         except pg.ImageNotFoundException:
                             pg.doubleClick(x=788, y=705)
                             pg.hotkey('ctrl', 'c')
@@ -622,18 +622,18 @@ for peça in produtos:
             time.sleep(1.5)
             while True:
                 try:
-                    sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+                    sem_resultado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_resultado_peca.ai.png')
                 except pg.ImageNotFoundException:
                     break
                 else:
                     pg.press('f5')
                     time.sleep(1.5)
             try:
-                indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+                indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
             except pg.ImageNotFoundException:
-                enquantonao(r'imagens/marcas_peca.ai.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
                 pg.click(x=560, y=690)
-                enquantonao(r'imagens/comprar_peca.ai.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
                 pg.click(x=109, y=650)
                 pg.click(x=109, y=650)
                 pg.hotkey('ctrl', 'c') 
@@ -674,9 +674,9 @@ for peça in produtos:
             pg.press('tab')
             digitar(codigo)         
             pg.press('enter')
-            enquantonao(r'imagens/marcas_mecanizou.png')
+            enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_mecanizou.png')
             try:
-                disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+                disponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
             except pg.ImageNotFoundException:
                 pyperclip.copy('Indisponível')
             else:
@@ -708,19 +708,19 @@ for peça in produtos:
             pg.press('enter')
             time.sleep(3.5)
             try:
-                indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+                indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_compel.png')
             except pg.ImageNotFoundException:
                 try:
                     pg.click(x=780, y=585)
                     time.sleep(1.5)
-                    estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
+                    estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\disponivel_compel.png')
                 except pg.ImageNotFoundException:
                     pg.click(x=1125, y=147)
                     pyperclip.copy('Indisponível')
                 else:
                     while True:
                         try:
-                            preco = pg.locateOnScreen(r'imagens/preco_compel.png')
+                            preco = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
                         except pg.ImageNotFoundException:
                             continue
                         else:
@@ -762,13 +762,13 @@ for peça in produtos:
                 pg.press('down')
 
             try:
-                comercializado = pg.locateOnScreen(r'imagens/nao_comercializado.png')
+                comercializado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nao_comercializado.png')
             except pg.ImageNotFoundException:
                 try:
-                    indisponivel = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
+                    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_kdapeca.png')
                 except pg.ImageNotFoundException:
                     try:
-                        estoque = pg.locateOnScreen(r'imagens/sem_estoque_kdapeca.png')
+                        estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_estoque_kdapeca.png')
                     except pg.ImageNotFoundException:
                         pg.doubleClick(x=788, y=705)
                         pg.hotkey('ctrl', 'c')
