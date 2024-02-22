@@ -21,5 +21,5 @@ codigo = str(produtos[0][0])
 #     else:
 #         print('na tela')
 
-code = int(pg.password(f'''Qual código você deseja corrigir? (Digite apenas o número) code''', title='Cotação RPA')) - 1
-print(code, type(code))
+produtos = [['123','321','123123']]
+produtos[0].pop(2)
