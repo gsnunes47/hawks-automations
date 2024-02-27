@@ -4,29 +4,30 @@ import pyperclip
 
 pg.FAILSAFE = True
 
-#menu
-c = 1 
-c2 = 1
-produtos = []
-while True:
-    peça = []
-    c2 = 1
-    while c2 < 4:
-        codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
-        if codigo == None:
-            break
-        peça.append(codigo)
-        c2 += 1
-    produtos.append(peça)
-    c += 1
-    escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
-    if escolha == 'Sim':
-        continue
-    else:
-        break
+# #menu
+# c = 1 
+# c2 = 1
+# produtos = []
+# while True:
+#     peça = []
+#     c2 = 1
+#     while c2 < 4:
+#         codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
+#         if codigo == None:
+#             break
+#         peça.append(codigo)
+#         c2 += 1
+#     produtos.append(peça)
+#     c += 1
+#     escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
+#     if escolha == 'Sim':
+#         continue
+#     else:
+#         break
 
-# # produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] #'mb4030', 
 # produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
+
+produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] 
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -64,17 +65,25 @@ while True:
         pg.press('f5')
         time.sleep(1.5)
 
-try:
-    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
-except pg.ImageNotFoundException:
-    pg.click(x=560, y=690)
-    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
-    pg.click(x=151, y=651)
-    pg.click(x=151, y=651)
-    pg.hotkey('ctrl', 'c') 
-    unformat()
-else:
-    pyperclip.copy('Indisponível')
+while True:
+    try:
+        indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
+    except pg.ImageNotFoundException:
+        
+        #PROCESSO MANUAL PECA.AI
+        choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+        if choice == 'Peça Indisponível':
+            pyperclip.copy('Indisponível')
+            break
+        enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
+        pg.click(x=151, y=651)
+        pg.click(x=151, y=651)
+        pg.hotkey('ctrl', 'c') 
+        unformat()
+        break
+    else:
+        pyperclip.copy('Indisponível')
+        break
 
 # abrir o excel
 time.sleep(0.5)
@@ -120,15 +129,22 @@ pg.hotkey('ctrl', 't')
 abrir_site('app.mecanizou.com')
 enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou2.png')
 pg.press('tab')
-digitar(codigo)
-pg.press('enter')
-enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_mecanizou.png')
-try:
-    disponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
-except pg.ImageNotFoundException:
+pg.write(codigo)
+pg.click(x=1162, y=403)
+while True:
+    try:
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
+    except pg.ImageNotFoundException:
+        time.sleep(0.5)
+        pg.click(x=1162, y=403)
+        continue
+    else:
+        break
+
+choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
-    pg.click(x=500, y=491)
     time.sleep(0.5)
     pg.doubleClick(x=988, y=403)
     pg.hotkey('ctrl', 'c')
@@ -146,7 +162,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+7')
     pg.press('enter')  
-    
+quit()
 #compel pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
