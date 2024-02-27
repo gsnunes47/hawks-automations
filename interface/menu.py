@@ -47,10 +47,12 @@ while True:
             txt += f'''Peça {indice + 1} - {peca}
 '''
         escolha = pg.confirm(f'''Peças cotadas:
-{txt}''', buttons=['Continuar', 'Adicionar mais peças', 'Excluir Peça', 'Corrigir'], title='Cotação RPA') #ADICIONAR MAIS PEÇAS
+{txt}''', buttons=['Continuar', 'Adicionar mais peças', 'Excluir Peça', 'Corrigir'], title='Cotação RPA')
+        
+        #escolhas
         if escolha == 'Corrigir':
-            #pegar peca a ser corrigida
             while True:
+                #pegar peca a ser corrigida
                 try:
                     peca = int(pg.password(f'''Peças cotadas:
 {txt}
@@ -65,17 +67,27 @@ Qual peça você deseja corrigir os códigos? (Digite apenas o número)''', titl
                 else:
                     break
             
-            if len(produtos[peca]) == 3:
-                escolha = 'Alterar código'
-            else:
-                escolha = pg.confirm(f'Peça {peca + 1} - {produtos[peca]}', buttons=['Alterar código', 'Adicionar código'])
+            #formatação de texto
+            txt = f'''Peça {peca + 1}:
+            '''
+            for indice, codigo_peca in enumerate(produtos[peca]):
+                txt += f'''
+{indice + 1} - {codigo_peca}'''
 
+            #verificação de tamanho da lista
+            if len(produtos[peca]) == 3:
+                escolha = pg.confirm(f'{txt}', buttons=['Alterar código', 'Excluir código'])
+            else:
+                escolha = pg.confirm(f'{txt}', buttons=['Alterar código', 'Adicionar código', 'Excluir código'])
+
+            #escolhas
             if escolha == 'Alterar código':
                 # pegar codigo a ser corrigido
                 while True:
                     try:
-                        code = int(pg.password(f'''Qual código você deseja corrigir? (Digite apenas o número)
-    {produtos[peca]}''', title='Cotação RPA', mask='')) - 1
+                        code = int(pg.password(f'''Qual código você deseja corrigir? (Digite apenas o número):
+                                               
+{txt}''', title='Cotação RPA', mask='')) - 1
                         codigo_corrigido = codigo_corrigido[code]
                     except ValueError:
                         pg.alert('Insira um valor numérico!')
@@ -90,8 +102,26 @@ Qual peça você deseja corrigir os códigos? (Digite apenas o número)''', titl
                 if new_code:
                     produtos[peca][code] = new_code
                 continue
-                
-            else:
+            
+            elif escolha == 'Excluir código':
+
+                while True:
+                    try:
+                        codigo_excluido_index = int(pg.password(f'''Qual código você deseja excluir?
+                                    
+    {txt}''', mask='', title='Cotação RPA')) - 1
+                        codigo_excluido = produtos[peca][codigo_excluido_index]
+                    except IndexError:
+                        pg.alert(f'Não existe código {codigo_excluido_index + 1}')
+                        continue
+                    except ValueError:
+                        pg.alert(f'Digite um valor numérico!')
+                        continue
+                    else:
+                        produtos.pop(codigo_excluido)
+                        break
+
+            elif escolha == 'Adicionar código':
                 new_code = pg.password('Digite o novo código.', title='Cotação RPA', mask='')
                 if new_code:
                     produtos[peca].append(new_code)
@@ -122,6 +152,7 @@ Qual peça você deseja excluir? (Digite apenas o número)''', title='Cotação 
             #return
             print(produtos)
             quit()
+
         continue
 
 print(produtos)
