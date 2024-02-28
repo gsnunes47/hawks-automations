@@ -27,7 +27,7 @@ pg.FAILSAFE = True
 
 # produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
 
-produtos = [['sp271'], ['wo146'], ['sk421', 'ph2966']] 
+produtos = [['wo1'], ['sp271'], ['sk421', 'ph2966']] 
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -133,9 +133,9 @@ pg.write(codigo)
 pg.click(x=1162, y=403)
 while True:
     try:
-        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou.png')
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marca_mecanizou.png')
     except pg.ImageNotFoundException:
-        time.sleep(0.5)
+        time.sleep(1.5)
         pg.click(x=1162, y=403)
         continue
     else:
@@ -162,7 +162,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+7')
     pg.press('enter')  
-quit()
+
 #compel pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
@@ -179,25 +179,17 @@ pg.click(x=404, y=417)
 digitar(codigo)
 pg.press('enter')
 time.sleep(3.5)
-try:
-    indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_compel.png')
-except pg.ImageNotFoundException:
-    try:
-        pg.click(x=780, y=585)
-        time.sleep(1.5)
-        estoque = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\disponivel_compel.png')
-    except pg.ImageNotFoundException:
-        pg.click(x=1125, y=147)
-        pyperclip.copy('Indisponível')
-    else:
-        enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
-        pg.doubleClick(x=701, y=339)
-        pg.hotkey('ctrl', 'c')
-        unformat()
-        time.sleep(0.1)
-        pg.click(x=1125, y=147)
-else:
+
+choice = pg.confirm('Escolha a peça, clique em detalhes e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
+else:
+    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
+    pg.doubleClick(x=701, y=339)
+    pg.hotkey('ctrl', 'c')
+    unformat()
+    time.sleep(0.1)
+    pg.click(x=1125, y=147)
 
 #excel compel
 alttab()
@@ -224,10 +216,34 @@ time.sleep(0.5)
 pg.click(x=314, y=326)
 digitar(codigo)
 pg.press('enter')
-time.sleep(1.5)
 
-pg.click(x=901, y=329)
-for c in range(0,3):
-    pg.press('down')
+choice = pg.confirm('Escolha a peça, copie o código interno e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+if choice == 'Peça Indisponível':
+    pyperclip.copy('Indisponível')
+else:
+    pg.press('home')
+    pg.click(x=346, y=319)
+    pg.hotkey('ctrl', 'a')
+    pyperclip.paste()
+    pg.press('enter')
+    time.sleep(1.5)
+    pg.click(x=901, y=329)
+    for c in range(0,3):
+        pg.press('down')
+    pg.doubleClick(x=788, y=705)
+    pg.hotkey('ctrl', 'c')
+    unformat()
 
-    
+#excel dpk
+alttab()
+pg.click(x=56, y=181)
+pg.write('f2')
+pg.press('enter')
+if str(pyperclip.paste()) == 'Indisponível':
+    pg.hotkey('ctrl', 'v')
+else:
+    pg.write('=')
+    pg.hotkey('ctrl', 'v')
+    pg.write('+10')
+    pg.press('enter')
+
