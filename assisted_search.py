@@ -222,9 +222,10 @@ if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
     pg.press('home')
-    pg.click(x=346, y=319)
+    time.sleep(1)
+    pg.doubleClick(x=346, y=319)
     pg.hotkey('ctrl', 'a')
-    pyperclip.paste()
+    pg.hotkey('ctrl', 'v')
     pg.press('enter')
     time.sleep(1.5)
     pg.click(x=901, y=329)
@@ -247,3 +248,32 @@ else:
     pg.write('+10')
     pg.press('enter')
 
+# celula_peca = 2
+# for peça in produtos:
+#     celula_excel = celula_peca
+#     if peça == produtos[0]:
+#         celula_peca = 3
+#         celula_excel = celula_peca
+#         for codigo in peça:
+#             if codigo == peça[0]:
+#                 celula_peca = 5
+#                 pass
+#             elif codigo == peça[-1]:
+#                 #process
+
+#                 #indice increase
+#                 celula_peca = 5
+#             else:
+#                 #process
+
+#                 #indice increase
+#                 celula_excel += 1
+#     else:
+#         for codigo in peça:
+#             #process
+
+#             #indice increase
+#             celula_excel += 1
+    
+#     if peça != produtos[0]:
+#         celula_peca += 3    
