@@ -33,7 +33,14 @@ for peça in produtos:
                     img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
                 except pg.ImageNotFoundException:
                     pg.hotkey('alt', 'left')
-                    continue
+                    while True:
+                        try:
+                            img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                        except pg.ImageNotFoundException:
+                            continue
+                        else:
+                            break
+                    break
                 else:
                     break
             pg.doubleClick(x=482, y=333)
@@ -111,6 +118,7 @@ for peça in produtos:
             #processo compel
             alttab()
             pg.hotkey('ctrl', '3')
+            pg.click(x=1, y=255)
             pg.press('home')
             time.sleep(1)
             pg.doubleClick(x=600, y=367)
@@ -146,6 +154,7 @@ for peça in produtos:
             #processo dpk
             alttab()
             pg.hotkey('ctrl', '4')
+            time.sleep(0.3)
             pg.press('home')
             time.sleep(1)
             pg.doubleClick(x=346, y=319)
@@ -170,4 +179,17 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'c')
                 unformat()
 
-            quit()
+            #excel dpk
+            alttab()
+            pg.click(x=56, y=181)
+            pg.write('f' + str(celula_excel))
+            pg.press('enter')
+            if str(pyperclip.paste()) == 'Indisponível':
+                pg.hotkey('ctrl', 'v')
+            else:
+                pg.write('=')
+                pg.hotkey('ctrl', 'v')
+                pg.write('+10')
+                pg.press('enter')
+
+            # quit()
