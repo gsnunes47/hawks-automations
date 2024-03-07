@@ -3,32 +3,8 @@ from interface.menu import menu
 import pyautogui as pg
 import pyperclip
 
+# pg.FAILSAFE = True
 
-pg.FAILSAFE = True
-
-# #menu
-# c = 1 
-# c2 = 1
-# produtos = []
-# while True:
-#     peça = []
-#     c2 = 1
-#     while c2 < 4:
-#         codigo = pg.password(F'Digite o {c2}º código da {c}ª peça', mask='', title='Cotação RPA')
-#         if codigo == None:
-#             break
-#         peça.append(codigo)
-#         c2 += 1
-#     produtos.append(peça)
-#     c += 1
-#     escolha = pg.confirm('Deseja continuar?', buttons=['Sim', 'Não'], title='Cotação RPA')
-#     if escolha == 'Sim':
-#         continue
-#     else:
-#         break
-
-# produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'] , ['mb4030']]#, ['sk423', 'mb4156'], ['40632', '5207110495'], ['880168', '40236', '520423031']]
-# produtos = [['wo1'], ['sp271'], ['sk421', 'ph2966']] 
 produtos = menu()
 codigo = str(produtos[0][0])
 
@@ -38,7 +14,7 @@ time.sleep(0.25)
 digitar('chrome')
 pg.press('enter')
 enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png')#C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png
-pg.hotkey('win', 'up')  
+pg.hotkey('win', 'up')
 abrir_site('peca.ai')
 
 #pesquisa peca.ai
@@ -71,7 +47,7 @@ while True:
     try:
         indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
     except pg.ImageNotFoundException:
-        
+
         #PROCESSO MANUAL PECA.AI
         choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
         if choice == 'Peça Indisponível':
@@ -80,7 +56,7 @@ while True:
         enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
         pg.click(x=151, y=651)
         pg.click(x=151, y=651)
-        pg.hotkey('ctrl', 'c') 
+        pg.hotkey('ctrl', 'c')
         unformat()
         break
     else:
@@ -97,7 +73,7 @@ time.sleep(2)
 pg.hotkey('win', 'up')
 pg.press('tab')
 pg.press('tab')
-pg.write('Planilha de Base para Cotacao')   
+pg.write('Planilha de Base para Cotacao')
 time.sleep(0.5)
 pg.press('enter')
 time.sleep(2)
@@ -148,9 +124,9 @@ if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
     time.sleep(0.5)
-    pg.doubleClick(x=988, y=403)
+    clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
     pg.hotkey('ctrl', 'c')
-    unformat()
+    pyperclip.copy(pyperclip.paste()[3:])
 
 #excel mecanizou
 alttab()
@@ -163,7 +139,7 @@ else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
     pg.write('+7')
-    pg.press('enter')  
+    pg.press('enter')
 
 #compel pesquisa
 alttab()
@@ -177,7 +153,7 @@ except pg.ImageNotFoundException:
 else:
     pg.click(x=1248, y=366)
 enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_compel2.png')
-pg.click(x=404, y=417) 
+pg.click(x=404, y=417)
 digitar(codigo)
 pg.press('enter')
 time.sleep(3.5)
@@ -283,12 +259,13 @@ for peça in produtos:
                 time.sleep(0.5)
                 pg.click(x=0, y=371)
                 pg.press('home')
+                time.sleep(0.3)
                 pg.doubleClick(x=482, y=333)
                 pg.hotkey('ctrl', 'a')
                 pg.write(codigo)
                 pg.press('tab')
                 pg.press('enter')
-                
+
                 #escolha manual peca ai segunda rodada
                 choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
                 if choice == 'Peça Indisponível':
@@ -297,7 +274,7 @@ for peça in produtos:
                     enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
                     pg.click(x=151, y=651)
                     pg.click(x=151, y=651)
-                    pg.hotkey('ctrl', 'c') 
+                    pg.hotkey('ctrl', 'c')
                     unformat()
 
                 #excel peca.ai
@@ -314,7 +291,7 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'v')
                     pg.write('+15')
                     pg.press('enter')
-                
+
                 #processo mecanizou
                 alttab()
                 pg.hotkey('ctrl', '2')
@@ -338,9 +315,9 @@ for peça in produtos:
                     pyperclip.copy('Indisponível')
                 else:
                     time.sleep(0.5)
-                    pg.doubleClick(x=988, y=403)
+                    clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
                     pg.hotkey('ctrl', 'c')
-                    unformat()
+                    pyperclip.copy(pyperclip.paste()[3:])
 
                 #excel mecanizou
                 alttab()
@@ -457,12 +434,13 @@ for peça in produtos:
                 time.sleep(0.5)
                 pg.click(x=0, y=371)
                 pg.press('home')
+                time.sleep(0.3)
                 pg.doubleClick(x=482, y=333)
                 pg.hotkey('ctrl', 'a')
                 pg.write(codigo)
                 pg.press('tab')
                 pg.press('enter')
-                
+
                 #escolha manual peca ai segunda rodada
                 choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
                 if choice == 'Peça Indisponível':
@@ -471,7 +449,7 @@ for peça in produtos:
                     enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
                     pg.click(x=151, y=651)
                     pg.click(x=151, y=651)
-                    pg.hotkey('ctrl', 'c') 
+                    pg.hotkey('ctrl', 'c')
                     unformat()
 
                 #excel peca.ai
@@ -488,7 +466,7 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'v')
                     pg.write('+15')
                     pg.press('enter')
-                
+
                 #processo mecanizou
                 alttab()
                 pg.hotkey('ctrl', '2')
@@ -512,9 +490,9 @@ for peça in produtos:
                     pyperclip.copy('Indisponível')
                 else:
                     time.sleep(0.5)
-                    pg.doubleClick(x=988, y=403)
+                    clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
                     pg.hotkey('ctrl', 'c')
-                    unformat()
+                    pyperclip.copy(pyperclip.paste()[3:])
 
                 #excel mecanizou
                 alttab()
@@ -632,12 +610,13 @@ for peça in produtos:
             time.sleep(0.5)
             pg.click(x=0, y=371)
             pg.press('home')
+            time.sleep(0.3)
             pg.doubleClick(x=482, y=333)
             pg.hotkey('ctrl', 'a')
             pg.write(codigo)
             pg.press('tab')
             pg.press('enter')
-            
+
             #escolha manual peca ai segunda rodada
             choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
             if choice == 'Peça Indisponível':
@@ -646,7 +625,7 @@ for peça in produtos:
                 enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
                 pg.click(x=151, y=651)
                 pg.click(x=151, y=651)
-                pg.hotkey('ctrl', 'c') 
+                pg.hotkey('ctrl', 'c')
                 unformat()
 
             #excel peca.ai
@@ -663,7 +642,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'v')
                 pg.write('+15')
                 pg.press('enter')
-            
+
             #processo mecanizou
             alttab()
             pg.hotkey('ctrl', '2')
@@ -687,9 +666,9 @@ for peça in produtos:
                 pyperclip.copy('Indisponível')
             else:
                 time.sleep(0.5)
-                pg.doubleClick(x=988, y=403)
+                clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
                 pg.hotkey('ctrl', 'c')
-                unformat()
+                pyperclip.copy(pyperclip.paste()[3:])
 
             #excel mecanizou
             alttab()
@@ -784,6 +763,6 @@ for peça in produtos:
 
             #indice increase
             celula_excel += 1
-    
+
     if peça != produtos[0]:
-        celula_peca += 3    
+        celula_peca += 3

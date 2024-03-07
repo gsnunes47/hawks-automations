@@ -1,8 +1,4 @@
-# import pyautogui as pg
 import pymsgbox as pg
-# def pegar_codigos():
-
-
 
 def menu():
     pg.CANCEL_TEXT = 'Finalizar'
@@ -156,35 +152,3 @@ def menu():
                 # quit()
 
             continue
-
-produtos = menu()
-print(produtos)
-
-
-
-
-
-# return produtos
-
-
-
-
-
-
-
-# escolha = pg.confirm('Bem vindo ao sistema de cotação RPA!, escolha com que modo você deseja continuar.', title='Cotação RPA', buttons=['Modo Automático', 'Modo com pausa'])
-# if escolha == 'Modo com pausa':
-#     modo = 'pause'
-# else:
-#     escolha = pg.confirm('ATENÇÃO!, tenha em mente que o modo automático ira pegar a primeira peça que aparecer no site ao pesquisar o código, mesmo que ela não seja a marca desejada.', buttons=['Continuar', 'Modo com pausa'], title='Cotação RPA')
-#     if escolha == 'Continuar':
-#         modo = 'auto'
-#     else:
-#         modo = 'pause'
-        
-# produtos = pegar_codigos()
-
-# if modo == 'auto':
-#     pass
-# else:
-#     pass

@@ -11,11 +11,13 @@ def enquantonao(imagem):
         else:
             break
 
-def clickar_imagem(img):
+def clickar_imagem(img, vezes=1):
     x, y, largura, altura = pg.locateOnScreen(img, grayscale=True)
     x = x + largura / 2
     y = y + altura / 2
-    pg.click(x, y)
+    for c in range(0, vezes):
+        pg.click(x, y)
+    
 
 def preencher_campo(info):
     pyperclip.copy(info)

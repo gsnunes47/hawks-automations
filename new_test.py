@@ -3,10 +3,8 @@ import pyautogui as pg
 import pyperclip
 import time
 
-pg.FAILSAFE = True
-
-# produtos = [['sp271']]
-# codigo = produtos[0][0]
-
 alttab()
-pg.doubleClick(x=600, y=367)
+clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
+pg.hotkey('ctrl', 'c')
+pyperclip.copy(pyperclip.paste()[3:])
+# pyperclip.copy
