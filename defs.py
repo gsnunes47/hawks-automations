@@ -59,6 +59,7 @@ def colar_celula(cell, txt):
 def abrir_site(link): 
     pg.click(x=182, y=67)
     pg.click(x=182, y=67)
+    pg.hotkey('ctrl', 'a')
     pyperclip.copy(link)
     pg.hotkey('ctrl', 'v')
     pg.press('enter')

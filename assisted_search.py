@@ -5,7 +5,8 @@ import pyperclip
 
 # pg.FAILSAFE = True
 
-produtos = menu()
+# produtos = menu()
+produtos = [['sk421', 'sp271', 'w6110'], ['t36083', 'vkm4790', 'ph2966'], ['wo1']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -53,6 +54,7 @@ while True:
         if choice == 'Peça Indisponível':
             pyperclip.copy('Indisponível')
             break
+        time.sleep(0.5)
         enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
         pg.click(x=151, y=651)
         pg.click(x=151, y=651)
@@ -66,6 +68,7 @@ while True:
 # abrir o excel
 time.sleep(0.5)
 pg.hotkey('win', 'r')
+time.sleep(0.2)
 pg.write('excel')
 pg.press('enter')
 time.sleep(2)
@@ -224,6 +227,38 @@ else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
     pg.write('+10')
+    pg.press('enter')
+
+#pesquisa rmp
+alttab()
+pg.hotkey('ctrl', 't')
+abrir_site('https://loja.rmp.com.br/')
+pg.click(x=285, y=138)
+pg.write(codigo)
+time.sleep(0.5)
+pg.press('enter')
+choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+
+if choice == 'Ok':
+    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+    pg.hotkey('ctrl', 'c')
+    pyperclip.copy(pyperclip.paste()[2:])
+else:
+    pyperclip.copy('Indisponível')
+
+
+#excel rmp
+alttab()
+pg.click(x=56, y=181)
+pg.click(x=56, y=181)
+pg.write('g2')
+pg.press('enter')
+if str(pyperclip.paste()) == 'Indisponível':
+    pg.hotkey('ctrl', 'v')
+else:
+    pg.write('=')
+    pg.hotkey('ctrl', 'v')
+    pg.write('+40')
     pg.press('enter')
 
 celula_peca = 2
@@ -410,6 +445,38 @@ for peça in produtos:
                     pg.write('+10')
                     pg.press('enter')
 
+                #pesquisa rmp
+                alttab()
+                pg.hotkey('ctrl', '5')
+                pg.click(x=285, y=138)
+                pg.hotkey('ctrl', 'a')
+                pg.write(codigo)
+                time.sleep(0.5)
+                pg.press('enter')
+                choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+
+                if choice == 'Ok':
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+                    pg.hotkey('ctrl', 'c')
+                    pyperclip.copy(pyperclip.paste()[2:])
+                else:
+                    pyperclip.copy('Indisponível')
+                
+
+                #excel rmp
+                alttab()
+                pg.click(x=56, y=181)
+                pg.click(x=56, y=181)
+                pg.write('g' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+40')
+                    pg.press('enter')
+
                 #indice increase
                 celula_peca = 5
             else:
@@ -583,6 +650,38 @@ for peça in produtos:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
                     pg.write('+10')
+                    pg.press('enter')
+
+                #processo rmp
+                alttab()
+                pg.hotkey('ctrl', '5')
+                pg.click(x=285, y=138)
+                pg.hotkey('ctrl', 'a')
+                pg.write(codigo)
+                time.sleep(0.5)
+                pg.press('enter')
+                choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+
+                if choice == 'Ok':
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+                    pg.hotkey('ctrl', 'c')
+                    pyperclip.copy(pyperclip.paste()[2:])
+                else:
+                    pyperclip.copy('Indisponível')
+                
+
+                #excel rmp
+                alttab()
+                pg.click(x=56, y=181)
+                pg.click(x=56, y=181)
+                pg.write('g' + str(celula_excel))
+                pg.press('enter')
+                if str(pyperclip.paste()) == 'Indisponível':
+                    pg.hotkey('ctrl', 'v')
+                else:
+                    pg.write('=')
+                    pg.hotkey('ctrl', 'v')
+                    pg.write('+40')
                     pg.press('enter')
 
                 #indice increase
@@ -759,6 +858,38 @@ for peça in produtos:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
                 pg.write('+10')
+                pg.press('enter')
+
+            #processo rmp
+            alttab()
+            pg.hotkey('ctrl', '5')
+            pg.click(x=285, y=138)
+            pg.hotkey('ctrl', 'a')
+            pg.write(codigo)
+            time.sleep(0.5)
+            pg.press('enter')
+            choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+
+            if choice == 'Ok':
+                clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+                pg.hotkey('ctrl', 'c')
+                pyperclip.copy(pyperclip.paste()[2:])
+            else:
+                pyperclip.copy('Indisponível')
+            
+
+            #excel rmp
+            alttab()
+            pg.click(x=56, y=181)
+            pg.click(x=56, y=181)
+            pg.write('g' + str(celula_excel))
+            pg.press('enter')
+            if str(pyperclip.paste()) == 'Indisponível':
+                pg.hotkey('ctrl', 'v')
+            else:
+                pg.write('=')
+                pg.hotkey('ctrl', 'v')
+                pg.write('+40')
                 pg.press('enter')
 
             #indice increase
