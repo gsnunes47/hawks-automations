@@ -65,6 +65,27 @@ def abrir_site(link):
     pg.press('enter')
     time.sleep(3)
 
+def pegar_nome_peca_ai(tem_nome, celula):
+    if tem_nome == True:
+        return True
+    else:
+        alttab()
+        pg.doubleClick(x=307, y=247)
+        pg.click(x=307, y=247)
+        pg.hotkey('ctrl', 'c')
+        text = pyperclip.paste().split('-')[0]
+        text = text.split(' ')
+        new_text = ''
+        for c in range(0, 2):
+            text.pop()
+        for i in text:
+            new_text += i
+            new_text += ' '
+        text = new_text
+        alttab()
+        colar_celula(celula, text)
+        return True
+
 def unformat():
     pg.press('win')
     time.sleep(0.35)

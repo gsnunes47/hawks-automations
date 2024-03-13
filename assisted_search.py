@@ -6,7 +6,8 @@ import pyperclip
 # pg.FAILSAFE = True
 
 # produtos = menu()
-produtos = [['sk421', 'sp271', 'w6110'], ['t36083', 'vkm4790', 'ph2966'], ['wo1']]
+tem_nome = False
+produtos = [['sk421'], ['t36083', 'vkm4790', 'ph2966'], ['wo1', 'sp271', 'w6110']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -70,6 +71,7 @@ time.sleep(0.5)
 pg.hotkey('win', 'r')
 time.sleep(0.2)
 pg.write('excel')
+time.sleep(0.2)
 pg.press('enter')
 time.sleep(2)
 # enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_excel.png')
@@ -80,6 +82,8 @@ pg.write('Planilha de Base para Cotacao')
 time.sleep(0.5)
 pg.press('enter')
 time.sleep(2)
+
+tem_nome = True
 
 #excel peca.ai
 escrever_celula('b2', codigo)
@@ -94,15 +98,16 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+15')
     pg.press('enter')
-
-#pegar nome da peça
-alttab()
-pg.doubleClick(x=307, y=247)
-pg.click(x=307, y=247)
-pg.hotkey('ctrl', 'c')
-text = pyperclip.paste().split('-')[0]
-alttab()
-colar_celula('a2', text)
+    tem_nome = pegar_nome_peca_ai(tem_nome, 'a2')
+quit()
+# #pegar nome da peça
+# alttab()
+# pg.doubleClick(x=307, y=247)
+# pg.click(x=307, y=247)
+# pg.hotkey('ctrl', 'c')
+# text = pyperclip.paste().split('-')[0]
+# alttab()
+# colar_celula('a2', pyperclip.paste())
 
 #pesquisa mecanizou
 alttab()
@@ -1016,45 +1021,45 @@ for peça in produtos:
                 pg.press('enter')
 
             #markup
-                pg.doubleClick(x=56, y=181)
-                pg.write(f'$C${celula_excel}:$G${celula_excel}')
-                pg.press('enter')
-                pg.hotkey('ctrl', 'c')
+            pg.doubleClick(x=56, y=181)
+            pg.write(f'$C${celula_excel}:$G${celula_excel}')
+            pg.press('enter')
+            pg.hotkey('ctrl', 'c')
 
-                teste = pyperclip.paste()
+            teste = pyperclip.paste()
 
-                num = ''
-                num_list = []
-                final_list = []
-                for c in teste:
-                    if c == ',':
-                        num += '.'
-                    elif c == '\t' or c == '\n':
-                        if c == teste[0]:
-                            continue
-                        else:
-                            num_list.append(num)
-                            num = ''
-                    elif c == '\r':
+            num = ''
+            num_list = []
+            final_list = []
+            for c in teste:
+                if c == ',':
+                    num += '.'
+                elif c == '\t' or c == '\n':
+                    if c == teste[0]:
                         continue
                     else:
-                        num += c
-
-                for i, v in enumerate(num_list):
-                    if v != 'Indisponível':
-                        final_list.append(float(v))
-
-                try:
-                    celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
-                except ZeroDivisionError:
-                    pass
+                        num_list.append(num)
+                        num = ''
+                elif c == '\r':
+                    continue
                 else:
-                    pg.doubleClick(x=56, y=181)
-                    pg.write('h' + str(celula_excel))
-                    pg.press('enter')
-                    pyperclip.copy(celula)
-                    pg.hotkey('ctrl', 'v')
-                pg.press('esc')
+                    num += c
+
+            for i, v in enumerate(num_list):
+                if v != 'Indisponível':
+                    final_list.append(float(v))
+
+            try:
+                celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
+            except ZeroDivisionError:
+                pass
+            else:
+                pg.doubleClick(x=56, y=181)
+                pg.write('h' + str(celula_excel))
+                pg.press('enter')
+                pyperclip.copy(celula)
+                pg.hotkey('ctrl', 'v')
+            pg.press('esc')
 
             #indice increase
             celula_excel += 1
