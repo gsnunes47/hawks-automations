@@ -85,6 +85,81 @@ def pegar_nome_peca_ai(tem_nome, celula):
         alttab()
         colar_celula(celula, text)
         return True
+    
+def pegar_nome_mecanizou(tem_nome, celula):
+    if tem_nome == True:
+        return True
+    else:
+        alttab()
+        pg.doubleClick(x=966, y=333)
+        pg.click(x=966, y=333)
+        pg.hotkey('ctrl', 'c')
+        text = pyperclip.paste()[:-1]
+        pyperclip.copy(text)
+        alttab()
+        colar_celula(celula, text)
+        return True
+
+def pegar_nome_compel(tem_nome, celula):
+    if tem_nome == True:
+        return True
+    else:
+        alttab()
+        pg.doubleClick(x=645, y=210)
+        pg.click(x=645, y=210)
+        pg.hotkey('ctrl', 'c')
+        text = pyperclip.paste()
+        new_text = ''
+        text = text.split(' ')
+        for c in range(0, 2):
+            text.pop()
+        for c in text:
+            new_text += c
+            new_text += ' '
+        text = new_text
+        alttab()
+        colar_celula(celula, text)
+        return True
+
+def pegar_nome_dpk(tem_nome, celula):
+    if tem_nome == True:
+        return True
+    else:
+        alttab()
+        pg.click(x=125, y=575)
+        time.sleep(1.2)
+        pg.doubleClick(x=94, y=219)
+        pg.click(x=94, y=219)
+        pg.hotkey('ctrl', 'c')
+        pg.press('esc')
+        text = pyperclip.paste()
+        text = text.split(' ')
+        new_text = ''
+        for c in range(0, 3):
+            text.pop()
+        for i in text:
+            new_text += i
+            new_text += ' '
+        text = new_text
+        pyperclip.copy(text)
+        alttab()
+        colar_celula(celula, text)
+        return True
+    
+def pegar_nome_rmp(tem_nome, celula):
+    if tem_nome == True:
+        return True
+    else:
+        alttab()
+        pg.doubleClick(x=475, y=260)
+        pg.click(x=475, y=260)
+        pg.hotkey('ctrl', 'c')
+        text = pyperclip.paste()
+        text = text.split('-')[0]
+        pyperclip.copy(text)
+        alttab()
+        colar_celula(celula, text)
+        return True
 
 def unformat():
     pg.press('win')

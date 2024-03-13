@@ -99,7 +99,7 @@ else:
     pg.write('+15')
     pg.press('enter')
     tem_nome = pegar_nome_peca_ai(tem_nome, 'a2')
-quit()
+
 # #pegar nome da peça
 # alttab()
 # pg.doubleClick(x=307, y=247)
@@ -148,6 +148,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+7')
     pg.press('enter')
+    tem_nome = pegar_nome_mecanizou(tem_nome, '2a')
 
 #compel pesquisa
 alttab()
@@ -171,6 +172,7 @@ if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
     enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
+    tem_nome = pegar_nome_compel(tem_nome, 'a2')
     pg.doubleClick(x=701, y=339)
     pg.hotkey('ctrl', 'c')
     unformat()
@@ -233,6 +235,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+10')
     pg.press('enter')
+    tem_nome = pegar_nome_dpk(tem_nome, 'a2')
 
 #pesquisa rmp
 alttab()
@@ -242,7 +245,7 @@ pg.click(x=285, y=138)
 pg.write(codigo)
 time.sleep(0.5)
 pg.press('enter')
-choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
 if choice == 'Ok':
     clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
@@ -265,6 +268,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+40')
     pg.press('enter')
+    tem_nome = pegar_nome_rmp(tem_nome, 'b2')
 
 #markup
 pg.doubleClick(x=56, y=181)
