@@ -83,8 +83,6 @@ time.sleep(0.5)
 pg.press('enter')
 time.sleep(2)
 
-tem_nome = True
-
 #excel peca.ai
 escrever_celula('b2', codigo)
 pg.click(x=56, y=181)
@@ -209,6 +207,7 @@ choice = pg.confirm('Escolha a peça, copie o código interno e depois clique em
 if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
+    pg.click(x=0, y=303)
     pg.press('home')
     time.sleep(1)
     pg.doubleClick(x=346, y=319)
@@ -313,6 +312,7 @@ pg.press('esc')
 
 celula_peca = 2
 for peça in produtos:
+    tem_nome = False
     celula_excel = celula_peca
     if peça == produtos[0]:
         celula_peca = 3
@@ -824,6 +824,24 @@ for peça in produtos:
             alttab()
             pg.hotkey('ctrl', '1')
             while True:
+                    try:
+                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                    except pg.ImageNotFoundException:
+                        pg.hotkey('alt', 'left')
+                        while True:
+                            try:
+                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                            except pg.ImageNotFoundException:
+                                continue
+                            else:
+                                break
+                        break
+                    else:
+                        break
+            time.sleep(0.5)
+            pg.click(x=0, y=332)
+            pg.press('home')
+            while True:
                 try:
                     img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
                 except pg.ImageNotFoundException:
@@ -873,6 +891,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'v')
                 pg.write('+15')
                 pg.press('enter')
+                tem_nome = pegar_nome_peca_ai(tem_nome, celula='a' + str(celula_excel))
 
             #processo mecanizou
             alttab()
@@ -912,7 +931,8 @@ for peça in produtos:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
                 pg.write('+7')
-                pg.press('enter')
+                pg.press('enter')       
+                tem_nome = pegar_nome_mecanizou(tem_nome, celula='a' + str(celula_excel))
 
             #processo compel
             alttab()
@@ -931,6 +951,7 @@ for peça in produtos:
                 pyperclip.copy('Indisponível')
             else:
                 enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
+                tem_nome = pegar_nome_compel(tem_nome, celula='a'+str(celula_excel))
                 pg.doubleClick(x=701, y=339)
                 pg.hotkey('ctrl', 'c')
                 unformat()
@@ -965,6 +986,7 @@ for peça in produtos:
             if choice == 'Peça Indisponível':
                 pyperclip.copy('Indisponível')
             else:
+                pg.click(x=0, y=303)
                 pg.press('home')
                 time.sleep(1)
                 pg.doubleClick(x=346, y=319)
@@ -991,6 +1013,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'v')
                 pg.write('+10')
                 pg.press('enter')
+                tem_nome = pegar_nome_dpk(tem_nome, celula='a'+str(celula_excel))
 
             #processo rmp
             alttab()
@@ -1023,6 +1046,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'v')
                 pg.write('+40')
                 pg.press('enter')
+                tem_nome = pegar_nome_rmp(tem_nome, celula='b'+str(celula_excel))
 
             #markup
             pg.doubleClick(x=56, y=181)
