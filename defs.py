@@ -104,7 +104,7 @@ def pegar_nome_compel(tem_nome, celula):
     if tem_nome == True:
         return True
     else:
-        alttab()
+        # alttab()
         pg.doubleClick(x=645, y=210)
         pg.click(x=645, y=210)
         pg.hotkey('ctrl', 'c')
@@ -119,6 +119,7 @@ def pegar_nome_compel(tem_nome, celula):
         text = new_text
         alttab()
         colar_celula(celula, text)
+        alttab()
         return True
 
 def pegar_nome_dpk(tem_nome, celula):
@@ -151,8 +152,8 @@ def pegar_nome_rmp(tem_nome, celula):
         return True
     else:
         alttab()
-        pg.doubleClick(x=475, y=260)
-        pg.click(x=475, y=260)
+        pg.doubleClick(x=610, y=351)
+        pg.click(x=610, y=351)
         pg.hotkey('ctrl', 'c')
         text = pyperclip.paste()
         text = text.split('-')[0]

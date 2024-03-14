@@ -7,7 +7,7 @@ import pyperclip
 
 # produtos = menu()
 tem_nome = False
-produtos = [['sk421'], ['t36083', 'vkm4790', 'ph2966'], ['wo1', 'sp271', 'w6110']]
+produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'], ['wo1']]#, 'sp271', 'w6110']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -97,15 +97,6 @@ else:
     pg.write('+15')
     pg.press('enter')
     tem_nome = pegar_nome_peca_ai(tem_nome, 'a2')
-
-# #pegar nome da peça
-# alttab()
-# pg.doubleClick(x=307, y=247)
-# pg.click(x=307, y=247)
-# pg.hotkey('ctrl', 'c')
-# text = pyperclip.paste().split('-')[0]
-# alttab()
-# colar_celula('a2', pyperclip.paste())
 
 #pesquisa mecanizou
 alttab()
@@ -240,6 +231,25 @@ else:
 alttab()
 pg.hotkey('ctrl', 't')
 abrir_site('https://loja.rmp.com.br/')
+
+#verificação de login rmp
+contador = 0
+while True:
+    try:
+        if contador == 2:
+            pg.moveTo(x=1355, y=135)
+            time.sleep(0.5)
+            pg.click(x=1244, y=524)
+            time.sleep(3.5)
+            break
+        time.sleep(1)
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\logado_rmp.png', grayscale=True, confidence=0.9)
+    except pg.ImageNotFoundException:
+        contador += 1
+        continue
+    else:
+        break
+
 pg.click(x=285, y=138)
 pg.write(codigo)
 time.sleep(0.5)
@@ -1046,7 +1056,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'v')
                 pg.write('+40')
                 pg.press('enter')
-                tem_nome = pegar_nome_rmp(tem_nome, celula='b'+str(celula_excel))
+                tem_nome = pegar_nome_rmp(tem_nome, celula='a'+str(celula_excel))
 
             #markup
             pg.doubleClick(x=56, y=181)

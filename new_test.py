@@ -5,42 +5,20 @@ import time
 
 alttab()
 
-pg.doubleClick(x=56, y=181)
-pg.write('$C$2:$G$2')
-pg.press('enter')
-pg.hotkey('ctrl', 'c')
-
-teste = pyperclip.paste()
-
-num = ''
-num_list = []
-final_list = []
-for c in teste:
-    if c == ',':
-        num += '.'
-    elif c == '\t' or c == '\n':
-        if c == teste[0]:
-            continue
-        else:
-            num_list.append(num)
-            num = ''
-    elif c == '\r':
+#verificação de login rmp
+contador = 0
+while True:
+    try:
+        if contador == 2:
+            pg.moveTo(x=1355, y=135)
+            time.sleep(0.5)
+            pg.click(x=1244, y=524)
+            time.sleep(3.5)
+            break
+        time.sleep(1)
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\logado_rmp.png', grayscale=True, confidence=0.9)
+    except pg.ImageNotFoundException:
+        contador += 1
         continue
     else:
-        num += c
-
-for i, v in enumerate(num_list):
-    if v != 'Indisponível':
-        final_list.append(float(v))
-
-try:
-    celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
-except ZeroDivisionError:
-    pass
-else:
-    pg.doubleClick(x=56, y=181)
-    pg.write('h2')
-    pg.press('enter')
-    pyperclip.copy(celula)
-    pg.hotkey('ctrl', 'v')
-pg.press('esc')
+        break
