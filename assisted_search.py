@@ -3,11 +3,11 @@ from interface.menu import menu
 import pyautogui as pg
 import pyperclip
 
-# pg.FAILSAFE = True
+pg.FAILSAFE = False
 
-# produtos = menu()
+produtos = menu()
 tem_nome = False
-produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'], ['wo1']]#, 'sp271', 'w6110']]
+# produtos = [['sk421'], ['t36083'], ['vkm4790'], ['ph2966'], ['wo1']]#, 'sp271', 'w6110']]
 codigo = str(produtos[0][0])
 
 #abrir o chrome
@@ -15,8 +15,9 @@ pg.hotkey('win', 'r')
 time.sleep(0.25)
 digitar('chrome')
 pg.press('enter')
-enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png')#C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png
+time.sleep(1)
 pg.hotkey('win', 'up')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png')#C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png
 abrir_site('peca.ai')
 
 #pesquisa peca.ai
@@ -121,7 +122,7 @@ if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
     time.sleep(0.5)
-    clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
+    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
     pg.hotkey('ctrl', 'c')
     pyperclip.copy(pyperclip.paste()[3:])
 
@@ -277,7 +278,7 @@ else:
     pg.hotkey('ctrl', 'v')
     pg.write('+40')
     pg.press('enter')
-    tem_nome = pegar_nome_rmp(tem_nome, 'b2')
+    tem_nome = pegar_nome_rmp(tem_nome, 'a2')
 
 #markup
 pg.doubleClick(x=56, y=181)
@@ -410,7 +411,7 @@ for peça in produtos:
                     pyperclip.copy('Indisponível')
                 else:
                     time.sleep(0.5)
-                    clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
                     pg.hotkey('ctrl', 'c')
                     pyperclip.copy(pyperclip.paste()[3:])
 
@@ -513,7 +514,7 @@ for peça in produtos:
                 pg.write(codigo)
                 time.sleep(0.5)
                 pg.press('enter')
-                choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+                choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
                 if choice == 'Ok':
                     clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
@@ -658,7 +659,7 @@ for peça in produtos:
                     pyperclip.copy('Indisponível')
                 else:
                     time.sleep(0.5)
-                    clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
                     pg.hotkey('ctrl', 'c')
                     pyperclip.copy(pyperclip.paste()[3:])
 
@@ -761,7 +762,7 @@ for peça in produtos:
                 pg.write(codigo)
                 time.sleep(0.5)
                 pg.press('enter')
-                choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+                choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
                 if choice == 'Ok':
                     clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
@@ -926,7 +927,7 @@ for peça in produtos:
                 pyperclip.copy('Indisponível')
             else:
                 time.sleep(0.5)
-                clickar_imagem(r'imagens/sifrao_mecanizou.png', 3)
+                clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
                 pg.hotkey('ctrl', 'c')
                 pyperclip.copy(pyperclip.paste()[3:])
 
@@ -1033,7 +1034,7 @@ for peça in produtos:
             pg.write(codigo)
             time.sleep(0.5)
             pg.press('enter')
-            choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
+            choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
             if choice == 'Ok':
                 clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
@@ -1104,3 +1105,5 @@ for peça in produtos:
 
     if peça != produtos[0]:
         celula_peca += 3
+
+pg.alert('Feito.', title='Cotações RPA')
