@@ -17,16 +17,16 @@ digitar('chrome')
 pg.press('enter')
 time.sleep(1)
 pg.hotkey('win', 'up')
-enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png')#C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\nova_guia.png
-abrir_site('peca.ai')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\nova_guia.png')#C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\nova_guia.png
+abrir_site('fornecedor_a')
 
-#pesquisa peca.ai
-enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_peca.ai.png')
-clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\busca_peca.ai.png')
+#pesquisa fornecedor_a
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_fornecedor_a.png')
+clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\busca_fornecedor_a.png')
 pg.press('tab')
 digitar(codigo)
 try:
-    login = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\logado_peca.ai.png')
+    login = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\logado_fornecedor_a.png')
 except pg.ImageNotFoundException:
     pg.press('enter')
     time.sleep(1)
@@ -39,7 +39,7 @@ time.sleep(1.5)
 
 while True:
     try:
-        sem_resultado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sem_resultado_peca.ai.png')
+        sem_resultado = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sem_resultado_fornecedor_a.png')
     except pg.ImageNotFoundException:
         break
     else:
@@ -48,16 +48,16 @@ while True:
 
 while True:
     try:
-        indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\indisponivel_peca.ai.png')
+        indisponivel = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\indisponivel_fornecedor_a.png')
     except pg.ImageNotFoundException:
 
-        #PROCESSO MANUAL PECA.AI
+        #PROCESSO MANUAL fornecedor_a
         choice = pg.confirm('Escolha a peça e depois clique em OK.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
         if choice == 'Peça Indisponível':
             pyperclip.copy('Indisponível')
             break
         time.sleep(0.5)
-        enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
+        enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\comprar_fornecedor_a.png')
         pg.click(x=151, y=651)
         pg.click(x=151, y=651)
         pg.hotkey('ctrl', 'c')
@@ -75,7 +75,7 @@ pg.write('excel')
 time.sleep(0.2)
 pg.press('enter')
 time.sleep(2)
-# enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_excel.png')
+# enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_excel.png')
 pg.hotkey('win', 'up')
 pg.press('tab')
 pg.press('tab')
@@ -84,7 +84,7 @@ time.sleep(0.5)
 pg.press('enter')
 time.sleep(2)
 
-#excel peca.ai
+#excel fornecedor_a
 escrever_celula('b2', codigo)
 pg.click(x=56, y=181)
 pg.click(x=56, y=181)
@@ -95,21 +95,21 @@ if str(pyperclip.paste()) == 'Indisponível':
 else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
-    pg.write('+15')
+    pg.write('+12')
     pg.press('enter')
     tem_nome = pegar_nome_peca_ai(tem_nome, 'a2')
 
-#pesquisa mecanizou
+#pesquisa fornecedor_b
 alttab()
 pg.hotkey('ctrl', 't')
-abrir_site('app.mecanizou.com')
-enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou2.png')
+abrir_site('app.fornecedor_b.com')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_fornecedor_b2.png')
 pg.press('tab')
 pg.write(codigo)
 pg.click(x=1162, y=403)
 while True:
     try:
-        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marca_mecanizou.png')
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marca_fornecedor_b.png')
     except pg.ImageNotFoundException:
         time.sleep(1.5)
         pg.click(x=1162, y=403)
@@ -122,11 +122,11 @@ if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
     time.sleep(0.5)
-    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
+    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_fornecedor_b.png', 3)
     pg.hotkey('ctrl', 'c')
     pyperclip.copy(pyperclip.paste()[3:])
 
-#excel mecanizou
+#excel fornecedor_b
 alttab()
 pg.click(x=56, y=181)
 pg.write('d2')
@@ -136,22 +136,22 @@ if str(pyperclip.paste()) == 'Indisponível':
 else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
-    pg.write('+7')
+    pg.write('+9')
     pg.press('enter')
-    tem_nome = pegar_nome_mecanizou(tem_nome, '2a')
+    tem_nome = pegar_nome_fornecedor_b(tem_nome, '2a')
 
-#compel pesquisa
+#fornecedor_c pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
-abrir_site('https://peca.compel.com.br/')
+abrir_site('fornecedor.exemplo')
 time.sleep(1)
 try:
-    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\acessar_compel.png')
+    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\acessar_fornecedor_c.png')
 except pg.ImageNotFoundException:
     pass
 else:
     pg.click(x=1248, y=366)
-enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_compel2.png')
+enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_fornecedor_c2.png')
 pg.click(x=404, y=417)
 digitar(codigo)
 pg.press('enter')
@@ -161,15 +161,15 @@ choice = pg.confirm('Escolha a peça, clique em detalhes e depois clique em OK.'
 if choice == 'Peça Indisponível':
     pyperclip.copy('Indisponível')
 else:
-    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
-    tem_nome = pegar_nome_compel(tem_nome, 'a2')
+    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\preco_fornecedor_c.png')
+    tem_nome = pegar_nome_fornecedor_c(tem_nome, 'a2')
     pg.doubleClick(x=701, y=339)
     pg.hotkey('ctrl', 'c')
     unformat()
     time.sleep(0.1)
     pg.click(x=1125, y=147)
 
-#excel compel
+#excel fornecedor_c
 alttab()
 pg.click(x=56, y=181)
 pg.write('e2')
@@ -179,13 +179,13 @@ if str(pyperclip.paste()) == 'Indisponível':
 else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
-    pg.write('+10')
+    pg.write('+14')
     pg.press('enter')
 
-#dpk pesquisa
+#fornecedor_d pesquisa
 alttab()
 pg.hotkey('ctrl', 't')
-abrir_site('https://www.kdapeca.com.br/login')
+abrir_site('fornecedor.exemplo')
 time.sleep(3.5)
 pg.doubleClick(x=1166, y=709)
 time.sleep(1)
@@ -214,7 +214,7 @@ else:
     pg.hotkey('ctrl', 'c')
     unformat()
 
-#excel dpk
+#excel fornecedor_d
 alttab()
 pg.click(x=56, y=181)
 pg.write('f2')
@@ -224,16 +224,16 @@ if str(pyperclip.paste()) == 'Indisponível':
 else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
-    pg.write('+10')
+    pg.write('+14')
     pg.press('enter')
     tem_nome = pegar_nome_dpk(tem_nome, 'a2')
 
-#pesquisa rmp
+#pesquisa fornecedor_e
 alttab()
 pg.hotkey('ctrl', 't')
-abrir_site('https://loja.rmp.com.br/')
+abrir_site('fornecedor.exemplo')
 
-#verificação de login rmp
+#verificação de login fornecedor_e
 contador = 0
 while True:
     try:
@@ -244,7 +244,7 @@ while True:
             time.sleep(3.5)
             break
         time.sleep(1)
-        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\logado_rmp.png', grayscale=True, confidence=0.9)
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\logado_rmp.png', grayscale=True, confidence=0.9)
     except pg.ImageNotFoundException:
         contador += 1
         continue
@@ -258,14 +258,14 @@ pg.press('enter')
 choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
 if choice == 'Ok':
-    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_rpm.png', 3)
     pg.hotkey('ctrl', 'c')
     pyperclip.copy(pyperclip.paste()[2:])
 else:
     pyperclip.copy('Indisponível')
 
 
-#excel rmp
+#excel fornecedor_e
 alttab()
 pg.click(x=56, y=181)
 pg.click(x=56, y=181)
@@ -276,7 +276,7 @@ if str(pyperclip.paste()) == 'Indisponível':
 else:
     pg.write('=')
     pg.hotkey('ctrl', 'v')
-    pg.write('+40')
+    pg.write('+35')
     pg.press('enter')
     tem_nome = pegar_nome_rmp(tem_nome, 'a2')
 
@@ -310,7 +310,7 @@ for i, v in enumerate(num_list):
         final_list.append(float(v))
 
 try:
-    celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
+    celula = f'{(sum(final_list) / len(final_list)) * 1.6:.2f}'
 except ZeroDivisionError:
     pass
 else:
@@ -334,17 +334,17 @@ for peça in produtos:
                 pass
             elif codigo == peça[-1]:
 
-                # precesso peca.ai
+                # precesso fornecedor_a
                 alttab()
                 pg.hotkey('ctrl', '1')
                 while True:
                     try:
-                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                     except pg.ImageNotFoundException:
                         pg.hotkey('alt', 'left')
                         while True:
                             try:
-                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                             except pg.ImageNotFoundException:
                                 continue
                             else:
@@ -367,13 +367,13 @@ for peça in produtos:
                 if choice == 'Peça Indisponível':
                     pyperclip.copy('Indisponível')
                 else:
-                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\comprar_fornecedor_a.png')
                     pg.click(x=151, y=651)
                     pg.click(x=151, y=651)
                     pg.hotkey('ctrl', 'c')
                     unformat()
 
-                #excel peca.ai
+                #excel fornecedor_a
                 alttab()
                 escrever_celula('b' + str(celula_excel), codigo)
                 pg.click(x=23, y=184)
@@ -385,20 +385,20 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+15')
+                    pg.write('+12')
                     pg.press('enter')
 
-                #processo mecanizou
+                #processo fornecedor_b
                 alttab()
                 pg.hotkey('ctrl', '2')
                 pg.hotkey('alt', 'left')
-                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou2.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_fornecedor_b2.png')
                 pg.press('tab')
                 pg.write(codigo)
                 pg.click(x=1162, y=403)
                 while True:
                     try:
-                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marca_mecanizou.png')
+                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marca_fornecedor_b.png')
                     except pg.ImageNotFoundException:
                         time.sleep(1.5)
                         pg.click(x=1162, y=403)
@@ -411,11 +411,11 @@ for peça in produtos:
                     pyperclip.copy('Indisponível')
                 else:
                     time.sleep(0.5)
-                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_fornecedor_b.png', 3)
                     pg.hotkey('ctrl', 'c')
                     pyperclip.copy(pyperclip.paste()[3:])
 
-                #excel mecanizou
+                #excel fornecedor_b
                 alttab()
                 pg.click(x=56, y=181)
                 pg.write('d' + str(celula_excel))
@@ -425,10 +425,10 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+7')
+                    pg.write('+9')
                     pg.press('enter')
 
-                #processo compel
+                #processo fornecedor_c
                 alttab()
                 pg.hotkey('ctrl', '3')
                 pg.click(x=1, y=255)
@@ -444,14 +444,14 @@ for peça in produtos:
                 if choice == 'Peça Indisponível':
                     pyperclip.copy('Indisponível')
                 else:
-                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\preco_fornecedor_c.png')
                     pg.doubleClick(x=701, y=339)
                     pg.hotkey('ctrl', 'c')
                     unformat()
                     time.sleep(0.1)
                     pg.click(x=1125, y=147)
 
-                #excel compel
+                #excel fornecedor_c
                 alttab()
                 pg.click(x=56, y=181)
                 pg.write('e' + str(celula_excel))
@@ -461,10 +461,10 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+10')
+                    pg.write('+14')
                     pg.press('enter')
 
-                #processo dpk
+                #processo fornecedor_d
                 alttab()
                 pg.hotkey('ctrl', '4')
                 time.sleep(0.3)
@@ -493,7 +493,7 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'c')
                     unformat()
 
-                #excel dpk
+                #excel fornecedor_d
                 alttab()
                 pg.click(x=56, y=181)
                 pg.write('f' + str(celula_excel))
@@ -503,10 +503,10 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+10')
+                    pg.write('+14')
                     pg.press('enter')
 
-                #pesquisa rmp
+                #pesquisa fornecedor_e
                 alttab()
                 pg.hotkey('ctrl', '5')
                 pg.click(x=285, y=138)
@@ -517,14 +517,14 @@ for peça in produtos:
                 choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
                 if choice == 'Ok':
-                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_rpm.png', 3)
                     pg.hotkey('ctrl', 'c')
                     pyperclip.copy(pyperclip.paste()[2:])
                 else:
                     pyperclip.copy('Indisponível')
                 
 
-                #excel rmp
+                #excel fornecedor_e
                 alttab()
                 pg.click(x=56, y=181)
                 pg.click(x=56, y=181)
@@ -535,7 +535,7 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+40')
+                    pg.write('+35')
                     pg.press('enter')
 
                 #markup
@@ -568,7 +568,7 @@ for peça in produtos:
                         final_list.append(float(v))
 
                 try:
-                    celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
+                    celula = f'{(sum(final_list) / len(final_list)) * 1.6:.2f}'
                 except ZeroDivisionError:
                     pass
                 else:
@@ -582,17 +582,17 @@ for peça in produtos:
                 #indice increase
                 celula_peca = 5
             else:
-                # precesso peca.ai
+                # precesso fornecedor_a
                 alttab()
                 pg.hotkey('ctrl', '1')
                 while True:
                     try:
-                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                     except pg.ImageNotFoundException:
                         pg.hotkey('alt', 'left')
                         while True:
                             try:
-                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                             except pg.ImageNotFoundException:
                                 continue
                             else:
@@ -615,13 +615,13 @@ for peça in produtos:
                 if choice == 'Peça Indisponível':
                     pyperclip.copy('Indisponível')
                 else:
-                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\comprar_fornecedor_a.png')
                     pg.click(x=151, y=651)
                     pg.click(x=151, y=651)
                     pg.hotkey('ctrl', 'c')
                     unformat()
 
-                #excel peca.ai
+                #excel fornecedor_a
                 alttab()
                 escrever_celula('b' + str(celula_excel), codigo)
                 pg.click(x=23, y=184)
@@ -633,20 +633,20 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+15')
+                    pg.write('+12')
                     pg.press('enter')
 
-                #processo mecanizou
+                #processo fornecedor_b
                 alttab()
                 pg.hotkey('ctrl', '2')
                 pg.hotkey('alt', 'left')
-                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou2.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_fornecedor_b2.png')
                 pg.press('tab')
                 pg.write(codigo)
                 pg.click(x=1162, y=403)
                 while True:
                     try:
-                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marca_mecanizou.png')
+                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marca_fornecedor_b.png')
                     except pg.ImageNotFoundException:
                         time.sleep(1.5)
                         pg.click(x=1162, y=403)
@@ -659,11 +659,11 @@ for peça in produtos:
                     pyperclip.copy('Indisponível')
                 else:
                     time.sleep(0.5)
-                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_fornecedor_b.png', 3)
                     pg.hotkey('ctrl', 'c')
                     pyperclip.copy(pyperclip.paste()[3:])
 
-                #excel mecanizou
+                #excel fornecedor_b
                 alttab()
                 pg.click(x=56, y=181)
                 pg.write('d' + str(celula_excel))
@@ -673,10 +673,10 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+7')
+                    pg.write('+9')
                     pg.press('enter')
 
-                #processo compel
+                #processo fornecedor_c
                 alttab()
                 pg.hotkey('ctrl', '3')
                 pg.click(x=1, y=255)
@@ -692,14 +692,14 @@ for peça in produtos:
                 if choice == 'Peça Indisponível':
                     pyperclip.copy('Indisponível')
                 else:
-                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
+                    enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\preco_fornecedor_c.png')
                     pg.doubleClick(x=701, y=339)
                     pg.hotkey('ctrl', 'c')
                     unformat()
                     time.sleep(0.1)
                     pg.click(x=1125, y=147)
 
-                #excel compel
+                #excel fornecedor_c
                 alttab()
                 pg.click(x=56, y=181)
                 pg.write('e' + str(celula_excel))
@@ -709,10 +709,10 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+10')
+                    pg.write('+14')
                     pg.press('enter')
 
-                #processo dpk
+                #processo fornecedor_d
                 alttab()
                 pg.hotkey('ctrl', '4')
                 time.sleep(0.3)
@@ -741,7 +741,7 @@ for peça in produtos:
                     pg.hotkey('ctrl', 'c')
                     unformat()
 
-                #excel dpk
+                #excel fornecedor_d
                 alttab()
                 pg.click(x=56, y=181)
                 pg.write('f' + str(celula_excel))
@@ -751,10 +751,10 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+10')
+                    pg.write('+14')
                     pg.press('enter')
 
-                #processo rmp
+                #processo fornecedor_e
                 alttab()
                 pg.hotkey('ctrl', '5')
                 pg.click(x=285, y=138)
@@ -765,14 +765,14 @@ for peça in produtos:
                 choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
                 if choice == 'Ok':
-                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+                    clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_rpm.png', 3)
                     pg.hotkey('ctrl', 'c')
                     pyperclip.copy(pyperclip.paste()[2:])
                 else:
                     pyperclip.copy('Indisponível')
                 
 
-                #excel rmp
+                #excel fornecedor_e
                 alttab()
                 pg.click(x=56, y=181)
                 pg.click(x=56, y=181)
@@ -783,7 +783,7 @@ for peça in produtos:
                 else:
                     pg.write('=')
                     pg.hotkey('ctrl', 'v')
-                    pg.write('+40')
+                    pg.write('+35')
                     pg.press('enter')
 
                 #markup
@@ -816,7 +816,7 @@ for peça in produtos:
                         final_list.append(float(v))
 
                 try:
-                    celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
+                    celula = f'{(sum(final_list) / len(final_list)) * 1.6:.2f}'
                 except ZeroDivisionError:
                     pass
                 else:
@@ -831,17 +831,17 @@ for peça in produtos:
                 celula_excel += 1
     else:
         for codigo in peça:
-            # precesso peca.ai
+            # precesso fornecedor_a
             alttab()
             pg.hotkey('ctrl', '1')
             while True:
                     try:
-                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                     except pg.ImageNotFoundException:
                         pg.hotkey('alt', 'left')
                         while True:
                             try:
-                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                                img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                             except pg.ImageNotFoundException:
                                 continue
                             else:
@@ -854,12 +854,12 @@ for peça in produtos:
             pg.press('home')
             while True:
                 try:
-                    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                 except pg.ImageNotFoundException:
                     pg.hotkey('alt', 'left')
                     while True:
                         try:
-                            img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marcas_peca.ai.png')
+                            img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marcas_fornecedor_a.png')
                         except pg.ImageNotFoundException:
                             continue
                         else:
@@ -882,13 +882,13 @@ for peça in produtos:
             if choice == 'Peça Indisponível':
                 pyperclip.copy('Indisponível')
             else:
-                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\comprar_peca.ai.png')
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\comprar_fornecedor_a.png')
                 pg.click(x=151, y=651)
                 pg.click(x=151, y=651)
                 pg.hotkey('ctrl', 'c')
                 unformat()
 
-            #excel peca.ai
+            #excel fornecedor_a
             alttab()
             escrever_celula('b' + str(celula_excel), codigo)
             pg.click(x=23, y=184)
@@ -900,21 +900,21 @@ for peça in produtos:
             else:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
-                pg.write('+15')
+                pg.write('+12')
                 pg.press('enter')
                 tem_nome = pegar_nome_peca_ai(tem_nome, celula='a' + str(celula_excel))
 
-            #processo mecanizou
+            #processo fornecedor_b
             alttab()
             pg.hotkey('ctrl', '2')
             pg.hotkey('alt', 'left')
-            enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\enquantonao_mecanizou2.png')
+            enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\enquantonao_fornecedor_b2.png')
             pg.press('tab')
             pg.write(codigo)
             pg.click(x=1162, y=403)
             while True:
                 try:
-                    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\marca_mecanizou.png')
+                    img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\marca_fornecedor_b.png')
                 except pg.ImageNotFoundException:
                     time.sleep(1.5)
                     pg.click(x=1162, y=403)
@@ -927,11 +927,11 @@ for peça in produtos:
                 pyperclip.copy('Indisponível')
             else:
                 time.sleep(0.5)
-                clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_mecanizou.png', 3)
+                clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_fornecedor_b.png', 3)
                 pg.hotkey('ctrl', 'c')
                 pyperclip.copy(pyperclip.paste()[3:])
 
-            #excel mecanizou
+            #excel fornecedor_b
             alttab()
             pg.click(x=56, y=181)
             pg.write('d' + str(celula_excel))
@@ -941,11 +941,11 @@ for peça in produtos:
             else:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
-                pg.write('+7')
+                pg.write('+9')
                 pg.press('enter')       
-                tem_nome = pegar_nome_mecanizou(tem_nome, celula='a' + str(celula_excel))
+                tem_nome = pegar_nome_fornecedor_b(tem_nome, celula='a' + str(celula_excel))
 
-            #processo compel
+            #processo fornecedor_c
             alttab()
             pg.hotkey('ctrl', '3')
             pg.click(x=1, y=255)
@@ -961,15 +961,15 @@ for peça in produtos:
             if choice == 'Peça Indisponível':
                 pyperclip.copy('Indisponível')
             else:
-                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\preco_compel.png')
-                tem_nome = pegar_nome_compel(tem_nome, celula='a'+str(celula_excel))
+                enquantonao(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\preco_fornecedor_c.png')
+                tem_nome = pegar_nome_fornecedor_c(tem_nome, celula='a'+str(celula_excel))
                 pg.doubleClick(x=701, y=339)
                 pg.hotkey('ctrl', 'c')
                 unformat()
                 time.sleep(0.1)
                 pg.click(x=1125, y=147)
 
-            #excel compel
+            #excel fornecedor_c
             alttab()
             pg.click(x=56, y=181)
             pg.write('e' + str(celula_excel))
@@ -979,10 +979,10 @@ for peça in produtos:
             else:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
-                pg.write('+10')
+                pg.write('+14')
                 pg.press('enter')
 
-            #processo dpk
+            #processo fornecedor_d
             alttab()
             pg.hotkey('ctrl', '4')
             time.sleep(0.3)
@@ -1012,7 +1012,7 @@ for peça in produtos:
                 pg.hotkey('ctrl', 'c')
                 unformat()
 
-            #excel dpk
+            #excel fornecedor_d
             alttab()
             pg.click(x=56, y=181)
             pg.write('f' + str(celula_excel))
@@ -1022,11 +1022,11 @@ for peça in produtos:
             else:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
-                pg.write('+10')
+                pg.write('+14')
                 pg.press('enter')
                 tem_nome = pegar_nome_dpk(tem_nome, celula='a'+str(celula_excel))
 
-            #processo rmp
+            #processo fornecedor_e
             alttab()
             pg.hotkey('ctrl', '5')
             pg.click(x=285, y=138)
@@ -1037,14 +1037,14 @@ for peça in produtos:
             choice = pg.confirm('Escolha a peça, clique no título, espere carregar o preço e clique em Ok.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
             if choice == 'Ok':
-                clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+                clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_rpm.png', 3)
                 pg.hotkey('ctrl', 'c')
                 pyperclip.copy(pyperclip.paste()[2:])
             else:
                 pyperclip.copy('Indisponível')
             
 
-            #excel rmp
+            #excel fornecedor_e
             alttab()
             pg.click(x=56, y=181)
             pg.click(x=56, y=181)
@@ -1055,7 +1055,7 @@ for peça in produtos:
             else:
                 pg.write('=')
                 pg.hotkey('ctrl', 'v')
-                pg.write('+40')
+                pg.write('+35')
                 pg.press('enter')
                 tem_nome = pegar_nome_rmp(tem_nome, celula='a'+str(celula_excel))
 
@@ -1089,7 +1089,7 @@ for peça in produtos:
                     final_list.append(float(v))
 
             try:
-                celula = f'{(sum(final_list) / len(final_list)) * 1.8:.2f}'
+                celula = f'{(sum(final_list) / len(final_list)) * 1.6:.2f}'
             except ZeroDivisionError:
                 pass
             else:

@@ -25,7 +25,7 @@ for peca in produtos:
     for codigo in peca:
 
         #processo
-        #pesquisa rmp
+        #pesquisa fornecedor_e
         alttab()
         pg.hotkey('ctrl', '5')
         pg.click(x=285, y=138)
@@ -36,14 +36,14 @@ for peca in produtos:
         choice = pg.confirm('Escolha a peça e depois clique no título.', buttons=['Ok', 'Peça Indisponível'], title='Cotação RPA')
 
         if choice == 'Ok':
-            clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\sifrao_rpm.png', 3)
+            clickar_imagem(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\sifrao_rpm.png', 3)
             pg.hotkey('ctrl', 'c')
             pyperclip.copy(pyperclip.paste()[2:])
         else:
             pyperclip.copy('Indisponível')
         print(pyperclip.paste())
 
-        #excel rmp
+        #excel fornecedor_e
         alttab()
         pg.click(x=56, y=181)
         pg.click(x=56, y=181)
@@ -54,7 +54,7 @@ for peca in produtos:
         else:
             pg.write('=')
             pg.hotkey('ctrl', 'v')
-            pg.write('+40')
+            pg.write('+35')
             pg.press('enter')
 
         celula_excel += 1
