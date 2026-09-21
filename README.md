@@ -1,4 +1,4 @@
-# Hawks Automations
+# Automação de Cotação de Peças
 
 > 🛠️ **Projeto aplicado** — automação RPA para pesquisa de peças, comparação de preços e cálculo de markup.
 
@@ -52,6 +52,8 @@ Por isso, a solução principal seguiu utilizando automação RPA.
 - Automação RPA
 - Web Scraping
 - Excel
+
+> Os valores comerciais presentes no projeto são fictícios.
 
 ## Status
 
