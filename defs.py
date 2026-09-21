@@ -86,7 +86,7 @@ def pegar_nome_peca_ai(tem_nome, celula):
         colar_celula(celula, text)
         return True
     
-def pegar_nome_mecanizou(tem_nome, celula):
+def pegar_nome_fornecedor_b(tem_nome, celula):
     if tem_nome == True:
         return True
     else:
@@ -100,7 +100,7 @@ def pegar_nome_mecanizou(tem_nome, celula):
         colar_celula(celula, text)
         return True
 
-def pegar_nome_compel(tem_nome, celula):
+def pegar_nome_fornecedor_c(tem_nome, celula):
     if tem_nome == True:
         return True
     else:
@@ -200,14 +200,14 @@ def abrir_chrome():
     enquantonao(r'imagens/nova_guia.png')
     pg.hotkey('win', 'up')
 
-#pesquisa peca.ai
+#pesquisa fornecedor_a
 def pesquisa_peca_ai(codigo):
-    enquantonao(r'imagens/enquantonao_peca.ai.png')
-    clickar_imagem(r'imagens/busca_peca.ai.png')
+    enquantonao(r'imagens/enquantonao_fornecedor_a.png')
+    clickar_imagem(r'imagens/busca_fornecedor_a.png')
     pg.press('tab')
     digitar(codigo)
     try:
-        login = pg.locateOnScreen(r'imagens/logado_peca.ai.png')
+        login = pg.locateOnScreen(r'imagens/logado_fornecedor_a.png')
     except pg.ImageNotFoundException:
         pg.press('enter')
         time.sleep(1)
@@ -219,17 +219,17 @@ def pesquisa_peca_ai(codigo):
     time.sleep(1.5)
     while True:
         try:
-            sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_peca.ai.png')
+            sem_resultado = pg.locateOnScreen(r'imagens/sem_resultado_fornecedor_a.png')
         except pg.ImageNotFoundException:
             break
         else:
             pg.press('f5')
             time.sleep(1.5)
     try:
-        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_peca.ai.png')
+        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_fornecedor_a.png')
     except pg.ImageNotFoundException:
         pg.click(x=560, y=690)
-        enquantonao(r'imagens/comprar_peca.ai.png')
+        enquantonao(r'imagens/comprar_fornecedor_a.png')
         pg.click(x=151, y=651)
         pg.click(x=151, y=651)
         pg.hotkey('ctrl', 'c') 
@@ -252,7 +252,7 @@ def abrir_excel():
     pg.press('enter')
     time.sleep(2)
 
-#excel peca.ai
+#excel fornecedor_a
 def excel_peca_ai(cell, codigo):
     escrever_celula('b' + str(cell), codigo)
     pg.click(x=56, y=181)
@@ -264,7 +264,7 @@ def excel_peca_ai(cell, codigo):
     else:
         pg.write('=')
         pg.hotkey('ctrl', 'v')
-        pg.write('+15')
+        pg.write('+12')
         pg.press('enter')
 
 def pegar_nome_peca(cell):
@@ -276,15 +276,15 @@ def pegar_nome_peca(cell):
     alttab()
     colar_celula(cell, text)
 
-def pesquisa_mecanizou(codigo):
-    #pesquisa mecanizou
-    enquantonao(r'imagens/enquantonao_mecanizou2.png')
+def pesquisa_fornecedor_b(codigo):
+    #pesquisa fornecedor_b
+    enquantonao(r'imagens/enquantonao_fornecedor_b2.png')
     pg.press('tab')
     digitar(codigo)
     pg.press('enter')
-    enquantonao(r'imagens/marcas_mecanizou.png')
+    enquantonao(r'imagens/marcas_fornecedor_b.png')
     try:
-        disponivel = pg.locateOnScreen(r'imagens/enquantonao_mecanizou.png')
+        disponivel = pg.locateOnScreen(r'imagens/enquantonao_fornecedor_b.png')
     except pg.ImageNotFoundException:
         pyperclip.copy('Indisponível')
     else:
@@ -294,8 +294,8 @@ def pesquisa_mecanizou(codigo):
         pg.hotkey('ctrl', 'c')
         unformat()
 
-def excel_mecanizou(cell):
-    #excel mecanizou
+def excel_fornecedor_b(cell):
+    #excel fornecedor_b
     pg.click(x=56, y=181)
     pg.write('d' + str(cell))
     pg.press('enter')
@@ -304,34 +304,34 @@ def excel_mecanizou(cell):
     else:
         pg.write('=')
         pg.hotkey('ctrl', 'v')
-        pg.write('+7')
+        pg.write('+9')
         pg.press('enter')
 
-#compel pesquisa
-def pesquisa_compel(codigo):
+#fornecedor_c pesquisa
+def pesquisa_fornecedor_c(codigo):
     try:
-        img = pg.locateOnScreen(r'imagens/acessar_compel.png')
+        img = pg.locateOnScreen(r'imagens/acessar_fornecedor_c.png')
     except pg.ImageNotFoundException:
         pass
     else:
         pg.click(x=1248, y=366)
-    enquantonao(r'imagens/enquantonao_compel2.png')
+    enquantonao(r'imagens/enquantonao_fornecedor_c2.png')
     pg.click(x=404, y=417) 
     digitar(codigo)
     pg.press('enter')
     time.sleep(3.5)
     try:
-        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_compel.png')
+        indisponivel = pg.locateOnScreen(r'imagens/indisponivel_fornecedor_c.png')
     except pg.ImageNotFoundException:
         try:
             pg.click(x=780, y=585)
             time.sleep(1.5)
-            estoque = pg.locateOnScreen(r'imagens/disponivel_compel.png')
+            estoque = pg.locateOnScreen(r'imagens/disponivel_fornecedor_c.png')
         except pg.ImageNotFoundException:
             pg.click(x=1125, y=147)
             pyperclip.copy('Indisponível')
         else:
-            enquantonao(r'imagens/preco_compel.png')
+            enquantonao(r'imagens/preco_fornecedor_c.png')
             pg.doubleClick(x=701, y=339)
             pg.hotkey('ctrl', 'c')
             unformat()
@@ -340,8 +340,8 @@ def pesquisa_compel(codigo):
     else:
         pyperclip.copy('Indisponível')
 
-#excel compel
-def excel_compel(cell):
+#excel fornecedor_c
+def excel_fornecedor_c(cell):
     pg.click(x=56, y=181)
     pg.write('e' + str(cell))
     pg.press('enter')
@@ -350,11 +350,11 @@ def excel_compel(cell):
     else:
         pg.write('=')
         pg.hotkey('ctrl', 'v')
-        pg.write('+10')
+        pg.write('+14')
         pg.press('enter')
 
-#dpk pesquisa
-def pesquisa_kdapeca(codigo):    
+#fornecedor_d pesquisa
+def pesquisa_fornecedor_d(codigo):    
     pg.click(x=314, y=326)
     pg.hotkey('ctrl', 'a')
     digitar(codigo)
@@ -367,10 +367,10 @@ def pesquisa_kdapeca(codigo):
         comercializado = pg.locateOnScreen(r'imagens/nao_comercializado.png')
     except pg.ImageNotFoundException:
         try:
-            indisponivel = pg.locateOnScreen(r'imagens/indisponivel_kdapeca.png')
+            indisponivel = pg.locateOnScreen(r'imagens/indisponivel_fornecedor_d.png')
         except pg.ImageNotFoundException:
             try:
-                estoque = pg.locateOnScreen(r'imagens/sem_estoque_kdapeca.png')
+                estoque = pg.locateOnScreen(r'imagens/sem_estoque_fornecedor_d.png')
             except pg.ImageNotFoundException:
                 pg.doubleClick(x=788, y=705)
                 pg.hotkey('ctrl', 'c')
@@ -382,8 +382,8 @@ def pesquisa_kdapeca(codigo):
     else:
         pyperclip.copy('Indisponível')
 
-#excel dpk
-def excel_kdapeca(cell):
+#excel fornecedor_d
+def excel_fornecedor_d(cell):
     pg.click(x=56, y=181)
     pg.write('f' + str(cell))
     pg.press('enter')
@@ -392,5 +392,5 @@ def excel_kdapeca(cell):
     else:
         pg.write('=')
         pg.hotkey('ctrl', 'v')
-        pg.write('+10')
+        pg.write('+14')
         pg.press('enter')
