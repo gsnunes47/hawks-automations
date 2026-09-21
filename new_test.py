@@ -5,7 +5,7 @@ import time
 
 alttab()
 
-#verificação de login rmp
+#verificação de login fornecedor_e
 contador = 0
 while True:
     try:
@@ -16,7 +16,7 @@ while True:
             time.sleep(3.5)
             break
         time.sleep(1)
-        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\hawks-automations\imagens\logado_rmp.png', grayscale=True, confidence=0.9)
+        img = pg.locateOnScreen(r'C:\Users\Dell\OneDrive\Documentos\GitHub\automacao-cotacao-pecas\imagens\logado_rmp.png', grayscale=True, confidence=0.9)
     except pg.ImageNotFoundException:
         contador += 1
         continue
